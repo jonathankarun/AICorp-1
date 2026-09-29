@@ -1,0 +1,173 @@
+{
+  "$defs": {
+    "Department": {
+      "additionalProperties": false,
+      "properties": {
+        "department_id": {
+          "format": "uuid",
+          "title": "Department Id",
+          "type": "string"
+        },
+        "source_key": {
+          "title": "Source Key",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "source_uri": {
+          "title": "Source Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "department_id",
+        "source_key",
+        "name",
+        "source_uri"
+      ],
+      "title": "Department",
+      "type": "object"
+    },
+    "Engagement": {
+      "additionalProperties": false,
+      "properties": {
+        "engagement_id": {
+          "format": "uuid",
+          "title": "Engagement Id",
+          "type": "string"
+        },
+        "source_key": {
+          "title": "Source Key",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "source_uri": {
+          "title": "Source Uri",
+          "type": "string"
+        },
+        "vendor": {
+          "$ref": "#/$defs/Vendor"
+        },
+        "department": {
+          "$ref": "#/$defs/Department"
+        }
+      },
+      "required": [
+        "engagement_id",
+        "source_key",
+        "title",
+        "source_uri",
+        "vendor",
+        "department"
+      ],
+      "title": "Engagement",
+      "type": "object"
+    },
+    "EngagementFound": {
+      "additionalProperties": false,
+      "properties": {
+        "result_type": {
+          "const": "engagement",
+          "default": "engagement",
+          "title": "Result Type",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "engagement": {
+          "$ref": "#/$defs/Engagement"
+        }
+      },
+      "required": [
+        "engagement"
+      ],
+      "title": "EngagementFound",
+      "type": "object"
+    },
+    "EngagementNotFound": {
+      "additionalProperties": false,
+      "properties": {
+        "result_type": {
+          "const": "not_found",
+          "default": "not_found",
+          "title": "Result Type",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "1.0",
+          "default": "1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "engagement_id": {
+          "format": "uuid",
+          "title": "Engagement Id",
+          "type": "string"
+        },
+        "code": {
+          "const": "engagement_not_found",
+          "default": "engagement_not_found",
+          "title": "Code",
+          "type": "string"
+        },
+        "message": {
+          "default": "Engagement not found or not accessible.",
+          "title": "Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "engagement_id"
+      ],
+      "title": "EngagementNotFound",
+      "type": "object"
+    },
+    "Vendor": {
+      "additionalProperties": false,
+      "properties": {
+        "vendor_id": {
+          "format": "uuid",
+          "title": "Vendor Id",
+          "type": "string"
+        },
+        "source_key": {
+          "title": "Source Key",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "source_uri": {
+          "title": "Source Uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "vendor_id",
+        "source_key",
+        "name",
+        "source_uri"
+      ],
+      "title": "Vendor",
+      "type": "object"
+    }
+  },
+  "anyOf": [
+    {
+      "$ref": "#/$defs/EngagementFound"
+    },
+    {
+      "$ref": "#/$defs/EngagementNotFound"
+    }
+  ]
+}

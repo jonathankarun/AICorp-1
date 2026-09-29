@@ -1,0 +1,24 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "actor_id": {
+      "format": "uuid",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "allowed_department_ids": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "title": "Allowed Department Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "actor_id"
+  ],
+  "title": "AccessContext",
+  "type": "object"
+}

@@ -1,0 +1,22 @@
+{
+  "result_type": "engagement",
+  "schema_version": "1.0",
+  "engagement": {
+    "engagement_id": "30000000-0000-4000-8000-000000000001",
+    "source_key": "engagement-fixture-001",
+    "title": "Fictional six-week intake improvement plan",
+    "source_uri": "fixture://jonathan-week1/engagement/001",
+    "vendor": {
+      "vendor_id": "20000000-0000-4000-8000-000000000001",
+      "source_key": "vendor-fixture-001",
+      "name": "Fictional Process Consulting LLC",
+      "source_uri": "fixture://jonathan-week1/vendor/001"
+    },
+    "department": {
+      "department_id": "10000000-0000-4000-8000-000000000001",
+      "source_key": "dept-fixture-001",
+      "name": "Fictional Process Improvement Department",
+      "source_uri": "fixture://jonathan-week1/department/001"
+    }
+  }
+}

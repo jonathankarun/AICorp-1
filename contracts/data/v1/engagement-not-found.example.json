@@ -1,0 +1,7 @@
+{
+  "result_type": "not_found",
+  "schema_version": "1.0",
+  "engagement_id": "30000000-0000-4000-8000-000000000099",
+  "code": "engagement_not_found",
+  "message": "Engagement not found or not accessible."
+}

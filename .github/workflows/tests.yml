@@ -1,0 +1,35 @@
+name: Week 1 checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-bookworm@sha256:639ab7ceb90e13123085b741fb31ef493fba25463002f6da665352e7b534b652
+        env:
+          POSTGRES_USER: aicorp
+          POSTGRES_PASSWORD: ci-fixture-only
+          POSTGRES_DB: aicorp
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U aicorp -d aicorp"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      POSTGRES_USER: aicorp
+      POSTGRES_PASSWORD: ci-fixture-only
+      POSTGRES_DB: aicorp
+      POSTGRES_PORT: 5432
+      PGHOST: 127.0.0.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pytest --run-data -q
+      - run: python -m backend.data.validate

@@ -1,0 +1,51 @@
+{
+  "fixture_version": "jonathan-week1-v1",
+  "synthetic": true,
+  "department": {
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "source_key": "dept-fixture-001",
+    "name": "Fictional Process Improvement Department",
+    "source_uri": "fixture://jonathan-week1/department/001"
+  },
+  "vendor": {
+    "vendor_id": "20000000-0000-4000-8000-000000000001",
+    "source_key": "vendor-fixture-001",
+    "name": "Fictional Process Consulting LLC",
+    "source_uri": "fixture://jonathan-week1/vendor/001"
+  },
+  "engagement": {
+    "engagement_id": "30000000-0000-4000-8000-000000000001",
+    "source_key": "engagement-fixture-001",
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "vendor_id": "20000000-0000-4000-8000-000000000001",
+    "title": "Fictional six-week intake improvement plan",
+    "source_uri": "fixture://jonathan-week1/engagement/001"
+  },
+  "payments": [
+    {
+      "payment_id": "40000000-0000-4000-8000-000000000001",
+      "source_key": "payment-fixture-001",
+      "vendor_id": "20000000-0000-4000-8000-000000000001",
+      "engagement_id": "30000000-0000-4000-8000-000000000001",
+      "amount": "100.00",
+      "currency": "USD",
+      "paid_on": "2026-09-27",
+      "classification": "consulting",
+      "classification_reason": "Synthetic fixture explicitly labels payment as consulting; not a City determination.",
+      "source_uri": "fixture://jonathan-week1/payment/001"
+    },
+    {
+      "payment_id": "40000000-0000-4000-8000-000000000002",
+      "source_key": "payment-fixture-002",
+      "vendor_id": "20000000-0000-4000-8000-000000000001",
+      "engagement_id": "30000000-0000-4000-8000-000000000001",
+      "amount": "200.00",
+      "currency": "USD",
+      "paid_on": "2026-09-28",
+      "classification": "consulting",
+      "classification_reason": "Synthetic fixture explicitly labels payment as consulting; not a City determination.",
+      "source_uri": "fixture://jonathan-week1/payment/002"
+    }
+  ]
+}
+

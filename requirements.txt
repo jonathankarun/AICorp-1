@@ -1,2 +1,4 @@
 pydantic>=2.7,<3
 pytest>=8,<9
+psycopg[binary]>=3.2,<4
+python-dotenv>=1,<2
