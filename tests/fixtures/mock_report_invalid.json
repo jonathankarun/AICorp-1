@@ -1,0 +1,15 @@
+{
+  "report_id": "bad-report",
+  "assignment_id": "assignment-fixture-001",
+  "version": 1,
+  "status": "draft",
+  "sections": [
+    {"name": "findings", "content": "This cites evidence that does not exist.", "citation_ids": ["cite-bad"]}
+  ],
+  "citations": [
+    {"citation_id": "cite-bad", "evidence_chunk_id": "chunk-does-not-exist"}
+  ],
+  "assumptions": [],
+  "missing_information": [],
+  "expert_review_needed": []
+}

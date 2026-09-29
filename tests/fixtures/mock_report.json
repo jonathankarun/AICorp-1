@@ -1,0 +1,65 @@
+{
+  "report_id": "report-fixture-001",
+  "assignment_id": "overwritten-by-adapter",
+  "version": 1,
+  "status": "draft",
+  "sections": [
+    {
+      "name": "problem_summary",
+      "content": "The fictional department needs a more consistent intake process and a preliminary improvement plan.",
+      "citation_ids": ["cite-001"]
+    },
+    {
+      "name": "findings",
+      "content": "The fixture establishes a six-week horizon and asks for a structured improvement deliverable.",
+      "citation_ids": ["cite-001", "cite-002"]
+    },
+    {
+      "name": "alternatives",
+      "content": "Alternative A standardizes intake with a checklist. Alternative B adds a triage step before assignment.",
+      "citation_ids": []
+    },
+    {
+      "name": "recommendation",
+      "content": "Pilot a standardized intake checklist first, then add triage if the pilot shows unresolved routing delays.",
+      "citation_ids": []
+    },
+    {
+      "name": "implementation_steps",
+      "content": "Week 1 map the process; Week 2 draft the checklist; Weeks 3-4 pilot; Week 5 measure results; Week 6 revise and document.",
+      "citation_ids": ["cite-001"]
+    },
+    {
+      "name": "risks",
+      "content": "Risks include low adoption, unclear ownership, and overfitting the process to the synthetic fixture.",
+      "citation_ids": []
+    },
+    {
+      "name": "assumptions",
+      "content": "This demonstration assumes the fictional department can run a six-week pilot and that no restricted data is required.",
+      "citation_ids": []
+    },
+    {
+      "name": "missing_information",
+      "content": "Real staffing levels, baseline processing times, and budget evidence are not provided by the fixture.",
+      "citation_ids": []
+    },
+    {
+      "name": "sources",
+      "content": "Two controlled synthetic fixture passages are used for this Week 1 demonstration.",
+      "citation_ids": ["cite-001", "cite-002"]
+    },
+    {
+      "name": "expert_review_needs",
+      "content": "A City process owner should verify feasibility, staffing assumptions, and any operational changes before use.",
+      "citation_ids": []
+    }
+  ],
+  "citations": [
+    {"citation_id": "cite-001", "evidence_chunk_id": "chunk-fixture-001"},
+    {"citation_id": "cite-002", "evidence_chunk_id": "chunk-fixture-002"}
+  ],
+  "assumptions": ["Synthetic fixture only", "No live City data", "No live model API"],
+  "missing_information": ["Real staffing levels", "Observed baseline cycle time", "Approved budget evidence"],
+  "expert_review_needed": ["Operational feasibility", "Department-specific workflow", "Any future procurement implications"]
+}

@@ -1,0 +1,12 @@
+{
+  "assignment_id": "assignment-rfq-001",
+  "schema_version": "1.0",
+  "problem": "List the qualifications a consulting firm should have.",
+  "department_id": null,
+  "intended_result": null,
+  "required_sections": ["qualifications"],
+  "audience": "Procurement staff",
+  "constraints": [],
+  "selected_document_version_ids": [],
+  "request_type": "RFQ"
+}

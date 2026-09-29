@@ -1,0 +1,15 @@
+{
+  "result_type": "needs_input",
+  "assignment_id": "assignment-rfq-001",
+  "questions": [
+    "What result or decision should this work product help achieve?",
+    "Which department owns or sponsors this request?",
+    "What project scope, constraints, timeline, or deliverables should the qualifications support?"
+  ],
+  "missing_fields": [
+    "intended_result",
+    "department_id",
+    "constraints"
+  ],
+  "model_calls": 0
+}
