@@ -4,6 +4,15 @@ The fixture is fictional. The expected answer is one department, one vendor,
 one engagement, two payments, and **300.00 USD**, unchanged by a second seed.
 The expected results were written before running the new validation.
 
+## Recorded outcome
+
+The full suite passed **19 tests** (15 PostgreSQL integration tests, one shared
+contract check, and Jai's three engine tests). The standalone validator passed
+**19 checks** on PostgreSQL 17.11 and Python 3.12.10. A source archive of commit
+`573d475efacd726aaa882869d108724a45b737d9`, installed into a new Python environment,
+also passed the full suite and standalone validator against fresh test databases.
+This is an automated clean-source reproduction, not a completed human review.
+
 ## Contents
 
 - `expected_outputs.md`: the planned success, failure, and boundary cases.
@@ -14,6 +23,12 @@ The expected results were written before running the new validation.
   fingerprint, PostgreSQL version, and lookup responses.
 - `validation-output.txt`: the validator's captured console output.
 - `dependencies.txt`: the installed Python dependency consistency check.
+- `clean-reproduction.json`: fresh source archive/environment reproduction and
+  the explicit distinction from a human teammate review.
+- `cli-demonstration.json`: real command-line success, missing-ID, and denied
+  cases, including their expected and actual exit codes.
+- `setup-repeat.txt`: a second execution of the setup script, preserving the
+  existing database and inserting zero duplicate fixture rows.
 
 The source input is `tests/fixtures/data_week1.json`. The migration and Python
 dependencies are pinned in the recorded code commit. Validation's source hash

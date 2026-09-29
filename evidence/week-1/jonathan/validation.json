@@ -1,0 +1,243 @@
+{
+  "fixture_version": "jonathan-week1-v1",
+  "synthetic": true,
+  "generated_at": "2026-09-29T08:20:34.610211+00:00",
+  "code_commit": "573d475efacd726aaa882869d108724a45b737d9",
+  "source_sha256": "168ca5f77c64455a556cbf29e9a75fe9120ab4f5131e3de925189e1699e5fc9d",
+  "python_version": "3.12.10",
+  "platform": "Darwin x86_64",
+  "command": "python -m backend.data.validate",
+  "checks": [
+    {
+      "check": "empty_database",
+      "expected": 0,
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "check": "first_migration",
+      "expected": [
+        "001_initial.sql"
+      ],
+      "actual": [
+        "001_initial.sql"
+      ],
+      "passed": true
+    },
+    {
+      "check": "first_seed",
+      "expected": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2
+      },
+      "actual": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2
+      },
+      "passed": true
+    },
+    {
+      "check": "first_counts",
+      "expected": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "actual": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "second_seed",
+      "expected": {
+        "departments": 0,
+        "vendors": 0,
+        "engagements": 0,
+        "payments": 0
+      },
+      "actual": {
+        "departments": 0,
+        "vendors": 0,
+        "engagements": 0,
+        "payments": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "second_counts",
+      "expected": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "actual": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "passed": true
+    },
+    {
+      "check": "second_migration",
+      "expected": [],
+      "actual": [],
+      "passed": true
+    },
+    {
+      "check": "payment_values",
+      "expected": [
+        "100.00",
+        "200.00"
+      ],
+      "actual": [
+        "100.00",
+        "200.00"
+      ],
+      "passed": true
+    },
+    {
+      "check": "payment_currencies",
+      "expected": [
+        "USD",
+        "USD"
+      ],
+      "actual": [
+        "USD",
+        "USD"
+      ],
+      "passed": true
+    },
+    {
+      "check": "exact_decimal_type",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "payment_total_usd",
+      "expected": "300.00",
+      "actual": "300.00",
+      "passed": true
+    },
+    {
+      "check": "lookup_result",
+      "expected": "engagement",
+      "actual": "engagement",
+      "passed": true
+    },
+    {
+      "check": "linked_vendor",
+      "expected": "20000000-0000-4000-8000-000000000001",
+      "actual": "20000000-0000-4000-8000-000000000001",
+      "passed": true
+    },
+    {
+      "check": "linked_department",
+      "expected": "10000000-0000-4000-8000-000000000001",
+      "actual": "10000000-0000-4000-8000-000000000001",
+      "passed": true
+    },
+    {
+      "check": "unknown_engagement",
+      "expected": "not_found",
+      "actual": "not_found",
+      "passed": true
+    },
+    {
+      "check": "unpermitted_engagement",
+      "expected": "not_found",
+      "actual": "not_found",
+      "passed": true
+    },
+    {
+      "check": "hidden_result_message",
+      "expected": "Engagement not found or not accessible.",
+      "actual": "Engagement not found or not accessible.",
+      "passed": true
+    },
+    {
+      "check": "invalid_foreign_key_rejected",
+      "expected": "23503",
+      "actual": "23503",
+      "passed": true
+    },
+    {
+      "check": "counts_after_rejected_insert",
+      "expected": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "actual": {
+        "departments": 1,
+        "vendors": 1,
+        "engagements": 1,
+        "payments": 2,
+        "document_versions": 0,
+        "chunks": 0
+      },
+      "passed": true
+    }
+  ],
+  "postgresql_version": "17.11 (Debian 17.11-1.pgdg12+2)",
+  "lookup": {
+    "result_type": "engagement",
+    "schema_version": "1.0",
+    "engagement": {
+      "engagement_id": "30000000-0000-4000-8000-000000000001",
+      "source_key": "engagement-fixture-001",
+      "title": "Fictional six-week intake improvement plan",
+      "source_uri": "fixture://jonathan-week1/engagement/001",
+      "vendor": {
+        "vendor_id": "20000000-0000-4000-8000-000000000001",
+        "source_key": "vendor-fixture-001",
+        "name": "Fictional Process Consulting LLC",
+        "source_uri": "fixture://jonathan-week1/vendor/001"
+      },
+      "department": {
+        "department_id": "10000000-0000-4000-8000-000000000001",
+        "source_key": "dept-fixture-001",
+        "name": "Fictional Process Improvement Department",
+        "source_uri": "fixture://jonathan-week1/department/001"
+      }
+    }
+  },
+  "missing_lookup": {
+    "result_type": "not_found",
+    "schema_version": "1.0",
+    "engagement_id": "30000000-0000-4000-8000-000000000099",
+    "code": "engagement_not_found",
+    "message": "Engagement not found or not accessible."
+  },
+  "denied_lookup": {
+    "result_type": "not_found",
+    "schema_version": "1.0",
+    "engagement_id": "30000000-0000-4000-8000-000000000001",
+    "code": "engagement_not_found",
+    "message": "Engagement not found or not accessible."
+  },
+  "test_database_removed": true,
+  "passed": true
+}

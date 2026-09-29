@@ -1,0 +1,27 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- /Users/jonathankarun/Capstone/AICorp-1/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/jonathankarun/Capstone/AICorp-1
+collecting ... collected 19 items
+
+tests/test_data.py::test_full_week1_acceptance_in_empty_database PASSED  [  5%]
+tests/test_data.py::test_seed_keeps_ids_and_amounts_identical PASSED     [ 10%]
+tests/test_data.py::test_seed_conflict_rolls_back_partial_insert PASSED  [ 15%]
+tests/test_data.py::test_migration_checksum_detects_changed_history PASSED [ 21%]
+tests/test_data.py::test_failed_migration_rolls_back_schema PASSED       [ 26%]
+tests/test_data.py::test_unknown_vendor_rejected PASSED                  [ 31%]
+tests/test_data.py::test_payment_cannot_disagree_with_engagement_vendor PASSED [ 36%]
+tests/test_data.py::test_unknown_engagement_can_remain_null PASSED       [ 42%]
+tests/test_data.py::test_refunds_use_exact_decimal_without_float PASSED  [ 47%]
+tests/test_data.py::test_nan_money_is_rejected PASSED                    [ 52%]
+tests/test_data.py::test_other_department_context_cannot_lookup PASSED   [ 57%]
+tests/test_data.py::test_invalid_uuid_cannot_be_used_as_sql PASSED       [ 63%]
+tests/test_data.py::test_document_provenance_defaults_deny_external_use PASSED [ 68%]
+tests/test_data.py::test_chunk_requires_existing_document_version PASSED [ 73%]
+tests/test_data.py::test_old_evidence_cannot_be_overwritten PASSED       [ 78%]
+tests/test_data_contracts.py::test_published_contracts_match_models_and_fixture PASSED [ 84%]
+tests/test_engine.py::test_complete_assignment_returns_valid_draft_report PASSED [ 89%]
+tests/test_engine.py::test_invalid_model_output_returns_typed_error PASSED [ 94%]
+tests/test_engine.py::test_rfq_only_needs_input_before_model_call PASSED [100%]
+
+============================== 19 passed in 3.52s ==============================

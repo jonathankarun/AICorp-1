@@ -1,0 +1,60 @@
+{
+  "code_commit": "573d475efacd726aaa882869d108724a45b737d9",
+  "generated_at": "2026-09-29T08:21:22.147643+00:00",
+  "method": "git archive of committed source; newly created virtual environment and lockfile installation; existing local PostgreSQL service; fresh disposable databases for each check",
+  "human_teammate_review": false,
+  "steps": [
+    {
+      "step": "Create a fresh Python environment",
+      "command": [
+        "python",
+        "-m",
+        "venv",
+        "<temporary-source-copy>/.venv"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 3.897
+    },
+    {
+      "step": "Install the committed lockfile",
+      "command": [
+        "python",
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements.lock"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 5.9
+    },
+    {
+      "step": "Run the complete test suite",
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "--run-data",
+        "-q"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 9.723
+    },
+    {
+      "step": "Run standalone empty-database validation",
+      "command": [
+        "python",
+        "-m",
+        "backend.data.validate"
+      ],
+      "exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.871
+    }
+  ],
+  "pytest_output": "...................                                                      [100%]\n19 passed in 9.18s\n",
+  "passed": true
+}

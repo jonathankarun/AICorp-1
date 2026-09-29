@@ -1,0 +1,35 @@
+Docker server: 28.1.1
+Requirement already satisfied: annotated-types==0.8.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 1)) (0.8.0)
+Requirement already satisfied: iniconfig==2.3.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 2)) (2.3.0)
+Requirement already satisfied: packaging==26.3 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 3)) (26.3)
+Requirement already satisfied: pluggy==1.6.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 4)) (1.6.0)
+Requirement already satisfied: psycopg==3.3.6 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 5)) (3.3.6)
+Requirement already satisfied: psycopg-binary==3.3.6 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 6)) (3.3.6)
+Requirement already satisfied: pydantic==2.13.5 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 7)) (2.13.5)
+Requirement already satisfied: pydantic_core==2.46.5 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 8)) (2.46.5)
+Requirement already satisfied: Pygments==2.21.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 9)) (2.21.0)
+Requirement already satisfied: pytest==8.4.2 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 10)) (8.4.2)
+Requirement already satisfied: python-dotenv==1.2.3 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 11)) (1.2.3)
+Requirement already satisfied: typing-inspection==0.4.4 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 12)) (0.4.4)
+Requirement already satisfied: typing_extensions==4.16.0 in ./.venv/lib/python3.12/site-packages (from -r requirements.lock (line 13)) (4.16.0)
+
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: /Users/jonathankarun/Capstone/AICorp-1/.venv/bin/python -m pip install --upgrade pip
+ Container aicorp-week1-db-1  Recreate
+ Container aicorp-week1-db-1  Recreated
+ Container aicorp-week1-db-1  Starting
+ Container aicorp-week1-db-1  Started
+ Container aicorp-week1-db-1  Waiting
+ Container aicorp-week1-db-1  Healthy
+{
+  "applied": []
+}
+{
+  "inserted": {
+    "departments": 0,
+    "vendors": 0,
+    "engagements": 0,
+    "payments": 0
+  }
+}
+Local Week 1 database ready. Run .venv/bin/python -m backend.data.validate

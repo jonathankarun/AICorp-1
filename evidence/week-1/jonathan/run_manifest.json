@@ -1,0 +1,36 @@
+{
+  "owner": "Jonathan",
+  "week": 1,
+  "generated_at": "2026-09-29T08:20:29.431494+00:00",
+  "code_commit": "573d475efacd726aaa882869d108724a45b737d9",
+  "python_version": "3.12.10",
+  "fixture": "tests/fixtures/data_week1.json",
+  "expected_results": "evidence/week-1/jonathan/expected_outputs.md",
+  "commands": [
+    {
+      "command": ".venv/bin/python -m pip check",
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.841,
+      "output": "evidence/week-1/jonathan/dependencies.txt"
+    },
+    {
+      "command": ".venv/bin/python -m pytest --run-data -v",
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 3.995,
+      "output": "evidence/week-1/jonathan/pytest.txt"
+    },
+    {
+      "command": ".venv/bin/python -m backend.data.validate --output evidence/week-1/jonathan/validation.json",
+      "expected_exit_code": 0,
+      "actual_exit_code": 0,
+      "passed": true,
+      "elapsed_seconds": 0.729,
+      "output": "evidence/week-1/jonathan/validation-output.txt"
+    }
+  ],
+  "passed": true
+}
