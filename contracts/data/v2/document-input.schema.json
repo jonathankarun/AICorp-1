@@ -1,0 +1,82 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "department_id": {
+      "format": "uuid",
+      "title": "Department Id",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 300,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    },
+    "source_uri": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Source Uri",
+      "type": "string"
+    },
+    "issuer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Issuer"
+    },
+    "published_on": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published On"
+    },
+    "access_status": {
+      "default": "unknown",
+      "enum": [
+        "public",
+        "restricted",
+        "unknown"
+      ],
+      "title": "Access Status",
+      "type": "string"
+    },
+    "external_model_allowed": {
+      "default": false,
+      "title": "External Model Allowed",
+      "type": "boolean"
+    },
+    "document_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Document Id"
+    }
+  },
+  "required": [
+    "department_id",
+    "title",
+    "source_uri"
+  ],
+  "title": "DocumentInput",
+  "type": "object"
+}

@@ -1,0 +1,15 @@
+{
+  "problem": "Improve permit intake",
+  "department_id": "10000000-0000-4000-8000-000000000001",
+  "intended_result": "Preliminary improvement plan",
+  "audience": "Department leadership",
+  "constraints": [
+    "Six weeks"
+  ],
+  "required_sections": [
+    "findings",
+    "recommendation"
+  ],
+  "selected_document_version_ids": [],
+  "request_type": "problem"
+}

@@ -1,0 +1,74 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "problem": {
+      "maxLength": 10000,
+      "minLength": 1,
+      "title": "Problem",
+      "type": "string"
+    },
+    "department_id": {
+      "format": "uuid",
+      "title": "Department Id",
+      "type": "string"
+    },
+    "intended_result": {
+      "maxLength": 3000,
+      "minLength": 1,
+      "title": "Intended Result",
+      "type": "string"
+    },
+    "required_sections": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Required Sections",
+      "type": "array"
+    },
+    "audience": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Audience"
+    },
+    "constraints": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Constraints",
+      "type": "array"
+    },
+    "selected_document_version_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 50,
+      "title": "Selected Document Version Ids",
+      "type": "array"
+    },
+    "request_type": {
+      "default": "problem",
+      "enum": [
+        "problem",
+        "RFP",
+        "RFQ"
+      ],
+      "title": "Request Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "problem",
+    "department_id",
+    "intended_result"
+  ],
+  "title": "AssignmentInput",
+  "type": "object"
+}

@@ -34,11 +34,15 @@ def validate_report(raw_report: dict, valid_evidence_ids: set[str]) -> Report:
     return report
 
 
-def run_engine(data: dict | Assignment, model_client: ModelAdapter) -> EngineResult:
+def run_engine(
+    data: dict | Assignment, model_client: ModelAdapter, evidence_repository=None
+) -> EngineResult:
     try:
         assignment = validate_assignment(data)
     except ValidationError as exc:
-        return EngineFailure(code="invalid_assignment", message=str(exc), retryable=False)
+        return EngineFailure(
+            code="invalid_assignment", message=str(exc), retryable=False
+        )
 
     scope = check_scope(assignment)
     if scope.status == "needs_input":
@@ -49,12 +53,28 @@ def run_engine(data: dict | Assignment, model_client: ModelAdapter) -> EngineRes
             model_calls=getattr(model_client, "call_count", 0),
         )
 
-    evidence = retrieve_evidence(assignment)
+    try:
+        evidence = (evidence_repository or retrieve_evidence)(assignment)
+    except ValueError:
+        return EngineFailure(
+            code="invalid_retrieval_request",
+            message="Check source IDs and the evidence contract.",
+            retryable=False,
+        )
+    if not evidence:
+        return EngineNeedsInput(
+            assignment_id=assignment.assignment_id,
+            questions=["Provide readable, approved sources for this assignment."],
+            missing_fields=["eligible_evidence"],
+            model_calls=getattr(model_client, "call_count", 0),
+        )
 
     try:
         raw_report, usage = model_client.generate(assignment, evidence)
         report = validate_report(raw_report, {e.chunk_id for e in evidence})
     except (ValidationError, ValueError, KeyError) as exc:
-        return EngineFailure(code="invalid_model_output", message=str(exc), retryable=False)
+        return EngineFailure(
+            code="invalid_model_output", message=str(exc), retryable=False
+        )
 
     return EngineSuccess(report=report, usage=usage)

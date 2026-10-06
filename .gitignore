@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 evidence/local/
 
+node_modules/
+apps/web/dist/
+apps/web/test-results/
+apps/web/playwright-report/

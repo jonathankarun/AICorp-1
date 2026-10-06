@@ -1,8 +1,33 @@
 # AICorp-1
 
-City of College Station AI Corps capstone prototype. Current code includes Jai's
-Week 1 mock consulting engine and Jonathan's Week 1 PostgreSQL data subsystem.
+City of College Station AI Corps capstone prototype. Current code includes a
+Week 2 React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
+consulting engine with mock and real-data evidence adapters.
 All committed fixtures are fictional; no City data or live model key is required.
+
+## Week 2 workspace and data integration
+
+```bash
+python3 scripts/setup_local.py
+npm ci --prefix apps/web
+npm run build --prefix apps/web
+.venv/bin/python scripts/serve_week2.py
+```
+
+Open http://127.0.0.1:8000 and use the local token printed by the launcher.
+Upload `tests/fixtures/week2/engagement.pdf`, select the ready source, save an
+assignment, reload, and search its page-linked evidence.
+
+- [Week 2 overview](docs/week2/README.md)
+- [Setup, demonstration, and recovery](docs/week2/setup.md)
+- [File-by-file explanation and presentation notes](docs/week2/explanation.md)
+- [API/data contract](contracts/data/v2/README.md)
+- [Validation evidence](evidence/week-2/jonathan/README.md)
+
+Validate with `.venv/bin/python -m pytest --run-data -q` and
+`.venv/bin/python -m backend.data.week2_demo`. The controlled Week 2 source
+population yields **$280 consulting, $500 operational, $50 unresolved, and 2.8%**
+of its matching $10,000 budget. Week 1's separate fixture still totals $300.
 
 ## Jonathan's Week 1 database
 
@@ -35,13 +60,15 @@ After installing the shared lockfile (done by setup):
 .venv/bin/python -m pytest tests/test_engine.py -q
 ```
 
-The engine still uses fixed synthetic evidence and a saved model response.
-Connecting it to the database requires the shared ID/evidence contract handoff.
+This command keeps the original fixed evidence and saved model response.
+Week 2 adds `DataEvidenceRepository` for real UUID-backed retrieval; see the
+version 2 contract. Team adoption and live-model evaluation remain pending.
 
 ## Planned architecture
 
 The diagram below describes the planned system, not completed functionality.
-The UI/API, full ingestion, and live model integration are later work. pgvector
+The local UI/API, CSV/PDF ingestion, and keyword retrieval are implemented.
+Live model integration remains conditional on authorization. pgvector
 is optional after a measured keyword-search baseline.
 
 ```text

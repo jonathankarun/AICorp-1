@@ -1,0 +1,14 @@
+[
+ {"id":"dev-01","split":"development","query":"timeline","expected":"approved","kind":"literal"},
+ {"id":"dev-02","split":"development","query":"deliverables","expected":"approved","kind":"literal"},
+ {"id":"dev-03","split":"development","query":"staff interviews","expected":"approved","kind":"wording"},
+ {"id":"dev-04","split":"development","query":"service delays","expected":"approved","kind":"literal"},
+ {"id":"dev-05","split":"development","query":"leadership","expected":"approved","kind":"literal"},
+ {"id":"dev-06","split":"development","query":"turnaround bottlenecks","expected":"approved","kind":"vocabulary mismatch"},
+ {"id":"dev-07","split":"development","query":"plan","expected":"approved","kind":"ambiguous"},
+ {"id":"dev-08","split":"development","query":"quasar spectroscopy","expected":null,"kind":"no evidence"},
+ {"id":"dev-09","split":"development","query":"timeline","selected":"external_disallowed","expected":null,"kind":"external model forbidden"},
+ {"id":"dev-10","split":"development","query":"timeline","selected":"other_department","expected":null,"kind":"read forbidden"},
+ {"id":"holdout-01","split":"holdout","query":"permit processing","expected":"approved","kind":"literal"},
+ {"id":"holdout-02","split":"holdout","query":"risk measures","expected":"approved","kind":"wording"}
+]

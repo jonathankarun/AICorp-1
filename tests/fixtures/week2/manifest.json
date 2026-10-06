@@ -1,0 +1,18 @@
+{
+  "source_key": "week2-fixture",
+  "title": "Fictional October payment export",
+  "issuer": "AI Corps fixture generator",
+  "date": "2026-10-05",
+  "location": "fixture://week2/payments.csv",
+  "fiscal_period": "2026-10-01/2026-10-31",
+  "access_status": "public",
+  "pdf": {
+    "title": "Fictional Process Improvement Engagement",
+    "issuer": "AI Corps fixture generator",
+    "published_on": "2026-10-05",
+    "source_uri": "fixture://week2/engagement.pdf",
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "access_status": "public",
+    "external_model_allowed": true
+  }
+}

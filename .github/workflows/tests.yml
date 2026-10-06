@@ -1,4 +1,4 @@
-name: Week 1 checks
+name: Data and workspace checks
 on: [push, pull_request]
 permissions:
   contents: read
@@ -33,3 +33,13 @@ jobs:
       - run: python -m pip install -r requirements.lock
       - run: python -m pytest --run-data -q
       - run: python -m backend.data.validate
+      - run: python -m backend.data.week2_demo
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci --prefix apps/web
+      - run: npm run build --prefix apps/web
+      - run: npm exec --prefix apps/web -- playwright install --with-deps chromium
+      - run: python scripts/test_week2_browser.py

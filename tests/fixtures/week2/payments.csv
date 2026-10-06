@@ -1,0 +1,6 @@
+transaction_id,vendor,department,engagement_id,amount,currency,paid_on,classification,rationale
+p-001,vendor-fixture-001,dept-fixture-001,30000000-0000-4000-8000-000000000001,100.00,USD,2026-10-05,consulting,Fictional consulting payment
+p-002,vendor-fixture-001,dept-fixture-001,30000000-0000-4000-8000-000000000001,200.00,USD,2026-10-06,consulting,Fictional consulting payment
+p-003,vendor-fixture-001,dept-fixture-001,30000000-0000-4000-8000-000000000001,-20.00,USD,2026-10-07,consulting,Fictional consulting refund
+p-004,vendor-fixture-001,dept-fixture-001,,500.00,USD,2026-10-07,operational,Fictional operational service
+p-005,vendor-fixture-001,dept-fixture-001,,50.00,USD,2026-10-07,unresolved,Service evidence not yet available
