@@ -5,6 +5,12 @@ Week 2 React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
 consulting engine with mock and real-data evidence adapters.
 All committed fixtures are fictional; no City data or live model key is required.
 
+## Complete code documentation
+
+Start with the [AICorp code handbook](docs/reference/README.md) for plain-language
+workflows, all input/output models, HTTP APIs, database storage, function references,
+setup and recovery commands, and a separately labeled guide to unmerged team branches.
+
 ## Week 2 workspace and data integration
 
 ```bash
