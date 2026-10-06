@@ -1,0 +1,38 @@
+apps/web/playwright.config.ts 73ms (unchanged)
+........................................                                 [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  /Users/jonathankarun/Capstone/AICorp-1/.venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+40 passed, 1 warning in 9.10s
+
+> aicorp-week2-web@0.2.0 build
+> tsc --noEmit && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 28 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.41 kB │ gzip:  0.29 kB
+dist/assets/index-C5ifbAGp.css    2.04 kB │ gzip:  0.88 kB
+dist/assets/index-CWSz1Zmj.js   229.77 kB │ gzip: 71.90 kB
+✓ built in 2.41s
+
+> aicorp-week2-web@0.2.0 test
+> playwright test
+
+[WebServer] INFO:     Started server process [7847]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+
+Running 2 tests using 1 worker
+
+[WebServer] EOF marker not found
+  ✓  1 tests/workspace.spec.ts:4:1 › real upload, saved selection, reload, source search, and failure preserves form (6.6s)
+  ✓  2 tests/workspace.spec.ts:57:1 › API outage is visible and form remains intact (924ms)
+
+  2 passed (11.3s)

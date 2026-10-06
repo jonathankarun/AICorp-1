@@ -1,0 +1,23 @@
+{
+  "spending": {
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "start": "2026-10-01",
+    "end": "2026-10-31",
+    "currency": "USD",
+    "source_key": "week2-fixture",
+    "consulting": "280.00",
+    "operational": "500.00",
+    "unresolved": "50.00",
+    "budget": "10000.00",
+    "consulting_share_percent": "2.80"
+  },
+  "baseline": {
+    "hits_at_5": 6,
+    "answerable_development_queries": 7,
+    "fraction": 0.8571428571428571,
+    "no_evidence_and_forbidden_passed": 3,
+    "holdout_queries_not_run": 2,
+    "limitation": "Keyword search misses turnaround bottlenecks; no semantic tuning performed."
+  },
+  "output": "evidence/week-2/jonathan/demo.json"
+}

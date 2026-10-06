@@ -1,0 +1,220 @@
+{
+  "first_import": {
+    "import_id": "8d94fb2b-46af-4a60-b4ea-a8773777bf49",
+    "inserted": 5,
+    "updated": 0,
+    "unchanged": 0,
+    "rejected": []
+  },
+  "repeat_import": {
+    "import_id": "45df3304-dbbb-4f2e-94a7-3659900f3138",
+    "inserted": 0,
+    "updated": 0,
+    "unchanged": 5,
+    "rejected": []
+  },
+  "rejected_row_example": [
+    {
+      "row": 2,
+      "reason": "[<class 'decimal.ConversionSyntax'>]",
+      "raw": {
+        "transaction_id": "p-001",
+        "vendor": "vendor-fixture-001",
+        "department": "dept-fixture-001",
+        "engagement_id": "30000000-0000-4000-8000-000000000001",
+        "amount": "not-money",
+        "currency": "USD",
+        "paid_on": "2026-10-05",
+        "classification": "consulting",
+        "rationale": "Fictional consulting payment"
+      }
+    }
+  ],
+  "spending": {
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "start": "2026-10-01",
+    "end": "2026-10-31",
+    "currency": "USD",
+    "source_key": "week2-fixture",
+    "consulting": "280.00",
+    "operational": "500.00",
+    "unresolved": "50.00",
+    "budget": "10000.00",
+    "consulting_share_percent": "2.80"
+  },
+  "assignment": {
+    "problem": "Improve permit processing",
+    "audience": null,
+    "constraints": [],
+    "request_type": "problem",
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "intended_result": "Preliminary improvement plan",
+    "required_sections": [],
+    "selected_document_version_ids": [
+      "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+    ],
+    "assignment_id": "5c28ec4d-09fc-4530-b624-a88c3c5e9236",
+    "schema_version": "2.0",
+    "created_at": "2026-10-06 04:47:38.731325+00:00"
+  },
+  "corpus_versions": {
+    "approved": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+    "external_disallowed": "ebf3ead0-be0b-51d5-8c3c-dc243f88bb8f",
+    "other_department": "ab6bd924-cdb7-5faf-99f9-2dfec80c6df5"
+  },
+  "retrieval": [
+    {
+      "id": "dev-01",
+      "split": "development",
+      "query": "timeline",
+      "expected": "approved",
+      "kind": "literal",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "78f1e92b-f768-5f28-a3ef-a3a5dfd1e9bf"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-02",
+      "split": "development",
+      "query": "deliverables",
+      "expected": "approved",
+      "kind": "literal",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "4a8b6f92-0e6d-5ca5-a150-74e87343c3d0"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-03",
+      "split": "development",
+      "query": "staff interviews",
+      "expected": "approved",
+      "kind": "wording",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "78f1e92b-f768-5f28-a3ef-a3a5dfd1e9bf"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-04",
+      "split": "development",
+      "query": "service delays",
+      "expected": "approved",
+      "kind": "literal",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "78f1e92b-f768-5f28-a3ef-a3a5dfd1e9bf"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-05",
+      "split": "development",
+      "query": "leadership",
+      "expected": "approved",
+      "kind": "literal",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "4a8b6f92-0e6d-5ca5-a150-74e87343c3d0"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-06",
+      "split": "development",
+      "query": "turnaround bottlenecks",
+      "expected": "approved",
+      "kind": "vocabulary mismatch",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [],
+      "returned_chunk_ids": [],
+      "passed": false
+    },
+    {
+      "id": "dev-07",
+      "split": "development",
+      "query": "plan",
+      "expected": "approved",
+      "kind": "ambiguous",
+      "expected_document_id": "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+      "returned_document_ids": [
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7",
+        "9ead6e47-fb5b-5979-9283-a237ab4602d7"
+      ],
+      "returned_chunk_ids": [
+        "4a8b6f92-0e6d-5ca5-a150-74e87343c3d0",
+        "78f1e92b-f768-5f28-a3ef-a3a5dfd1e9bf"
+      ],
+      "passed": true
+    },
+    {
+      "id": "dev-08",
+      "split": "development",
+      "query": "quasar spectroscopy",
+      "expected": null,
+      "kind": "no evidence",
+      "expected_document_id": null,
+      "returned_document_ids": [],
+      "returned_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "dev-09",
+      "split": "development",
+      "query": "timeline",
+      "selected": "external_disallowed",
+      "expected": null,
+      "kind": "external model forbidden",
+      "expected_document_id": null,
+      "returned_document_ids": [],
+      "returned_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "dev-10",
+      "split": "development",
+      "query": "timeline",
+      "selected": "other_department",
+      "expected": null,
+      "kind": "read forbidden",
+      "expected_document_id": null,
+      "returned_document_ids": [],
+      "returned_chunk_ids": [],
+      "passed": true
+    }
+  ],
+  "baseline": {
+    "hits_at_5": 6,
+    "answerable_development_queries": 7,
+    "fraction": 0.8571428571428571,
+    "no_evidence_and_forbidden_passed": 3,
+    "holdout_queries_not_run": 2,
+    "limitation": "Keyword search misses turnaround bottlenecks; no semantic tuning performed."
+  },
+  "live_model_evaluation": "pending authorization; no paid calls",
+  "deterministic_checks_passed": true,
+  "generated_at": "2026-10-06T04:47:38.943476+00:00",
+  "python": "3.12.10",
+  "source_commit": "90d239524c869e84c3320832c33cc2cd5ceadef3",
+  "fixture_sha256": "2cbf04f6d9293c51c216a343a231ab44f482f0db67b5b75f7eba68fd96ae10ca",
+  "synthetic": true
+}
