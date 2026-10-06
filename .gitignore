@@ -6,3 +6,21 @@ __pycache__/
 .DS_Store
 evidence/local/
 
+
+# React / Vite
+apps/web/node_modules/
+apps/web/dist/
+apps/web/.env
+apps/web/.vite/
+apps/web/*.tsbuildinfo
+apps/web/vite.config.js
+apps/web/vite.config.d.ts
+
+# Yasha React/Vite
+apps/web/node_modules/
+apps/web/dist/
+apps/web/.env
+apps/web/.vite/
+apps/web/*.tsbuildinfo
+apps/web/vite.config.js
+apps/web/vite.config.d.ts
