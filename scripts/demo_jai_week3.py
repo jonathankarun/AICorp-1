@@ -9,7 +9,7 @@ import json
 
 from backend.engine.demo_adapters import MockModelAdapter
 from backend.engine.demo_pipeline import run_engine
-from backend.engine.repository import FixtureEvidenceRepository, NoCostFixtureRepository
+from backend.engine.demo_repository import FixtureEvidenceRepository, NoCostFixtureRepository
 
 FIX = Path("tests/fixtures")
 OUT = Path("evidence/week-3/jai")
