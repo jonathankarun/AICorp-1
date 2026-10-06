@@ -25,6 +25,9 @@ from backend.data.workspace import (
 )
 from backend.data.ingestion import process_job, submit_pdf
 from backend.data.search import search
+from backend.engine.demo_models import AccessContext as EngineAccessContext, Assignment
+from backend.engine.demo_pipeline import run_engine
+from backend.engine.workspace import WorkspaceEvidenceRepository, WorkspaceMockAdapter
 
 
 def create_app(
@@ -109,6 +112,24 @@ def create_app(
     def documents(ctx=Depends(identity)):
         with connection_factory() as conn:
             return list_documents(conn, ctx)
+
+    @app.post("/api/v1/assignments/{identifier}/consult")
+    def consult(identifier: UUID, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            saved = get_assignment(conn, identifier, ctx)
+            assignment = Assignment.model_validate({
+                **saved, "assignment_id": str(saved["assignment_id"]),
+            })
+            if not assignment.required_sections:
+                raise DataError("required_sections_missing", 422)
+            model = WorkspaceMockAdapter()
+            result = run_engine(
+                assignment, model, WorkspaceEvidenceRepository(conn, ctx),
+                EngineAccessContext(actor_id=str(ctx.actor_id),
+                                    readable_scopes=["public", "restricted"]),
+            )
+            return {**result.model_dump(mode="json"),
+                    "evidence": [chunk.model_dump(mode="json") for chunk in model.evidence]}
 
     @app.get("/api/v1/uploads")
     def jobs(ctx=Depends(identity)):

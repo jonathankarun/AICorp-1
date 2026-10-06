@@ -50,3 +50,15 @@ def test_context_is_ranked_limited_and_source_aware():
     assert bundle.trace.context_word_count <= bundle.trace.max_context_words
     assert all(item.document_version_id for item in bundle.evidence)
     assert all(item.locator for item in bundle.evidence)
+
+
+def test_first_chunk_cannot_exceed_context_budget():
+    from backend.engine.demo_models import AccessContext, EvidenceChunk
+    from backend.engine.demo_retrieval import _select_context
+
+    oversized = EvidenceChunk(chunk_id="large", document_version_id="v1", title="Large",
+                              source_uri="fixture://large", locator="page 1", text="word " * 11)
+    small = oversized.model_copy(update={"chunk_id": "small", "text": "short evidence"})
+    result = _select_context("evidence", [oversized, small], AccessContext(), max_context_words=10)
+    assert [chunk.chunk_id for chunk in result.evidence] == ["small"]
+    assert result.trace.context_word_count <= 10

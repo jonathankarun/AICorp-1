@@ -492,3 +492,67 @@ def test_engine_respects_assignment_department_even_if_actor_can_read_both(datab
         intended_result="plan",
     )
     assert DataEvidenceRepository(database, broad)(request) == []
+
+
+def test_workspace_consult_uses_saved_assignment_and_database_citations(database):
+    job = ingest(database)
+    headers = {"Authorization": "Bearer " + TOKEN}
+    with client_for(database) as client:
+        saved = client.post("/api/v1/assignments", headers=headers, json=assignment(
+            required_sections=["findings", "recommendation"],
+            selected_document_version_ids=[job["document_version_id"]],
+        ).model_dump(mode="json")).json()
+        endpoint = f"/api/v1/assignments/{saved['assignment_id']}/consult"
+        assert client.post(endpoint).status_code == 401
+        result = client.post(endpoint, headers=headers)
+        assert result.status_code == 200
+        body = result.json()
+        assert body["result_type"] == "report"
+        assert body["report"]["assignment_id"] == saved["assignment_id"]
+        assert body["usage"]["mock"] is True
+        assert body["methodology_stages"]
+        assert {s["name"] for s in body["report"]["sections"]} == {"findings", "recommendation"}
+        chunks = {c["chunk_id"]: c for c in body["evidence"]}
+        assert chunks
+        for citation in body["report"]["citations"]:
+            chunk = chunks[citation["evidence_chunk_id"]]
+            assert chunk["document_version_id"] == str(job["document_version_id"])
+            assert chunk["locator"].startswith("page ")
+        assert body["report"]["cost_evidence"]["min_amount"] is None
+        assert client.post(f"/api/v1/assignments/{uuid4()}/consult", headers=headers).status_code == 404
+    other = AccessContext(actor_id=uuid4(), allowed_department_ids=(DEPT,))
+    with TestClient(create_app(lambda: connect(database.info.dbname), context=other,
+                              token=TOKEN, local_mode=True)) as client:
+        assert client.post(endpoint, headers=headers).status_code == 404
+
+
+def test_workspace_consult_does_not_fall_back_to_fixtures(database):
+    forbidden = ingest(database, external_model_allowed=False)
+    headers = {"Authorization": "Bearer " + TOKEN}
+    with client_for(database) as client:
+        for versions in ([], [forbidden["document_version_id"]]):
+            saved = client.post("/api/v1/assignments", headers=headers, json=assignment(
+                required_sections=["findings"], selected_document_version_ids=versions,
+            ).model_dump(mode="json")).json()
+            body = client.post(f"/api/v1/assignments/{saved['assignment_id']}/consult", headers=headers).json()
+            assert body["result_type"] == "evidence_gap"
+            assert body["model_calls"] == 0 and body["evidence"] == []
+        saved = client.post("/api/v1/assignments", headers=headers,
+                            json=assignment().model_dump(mode="json")).json()
+        assert client.post(f"/api/v1/assignments/{saved['assignment_id']}/consult", headers=headers).status_code == 422
+        saved = client.post("/api/v1/assignments", headers=headers, json=assignment(
+            request_type="RFQ", required_sections=["findings"], constraints=[],
+        ).model_dump(mode="json")).json()
+        result = client.post(f"/api/v1/assignments/{saved['assignment_id']}/consult", headers=headers).json()
+        assert result["result_type"] == "needs_input" and result["model_calls"] == 0
+
+
+def test_new_engine_repository_restricts_department(database):
+    from backend.engine.workspace import WorkspaceEvidenceRepository
+
+    ingest(database)
+    other = uuid4()
+    broad = AccessContext(actor_id=CTX.actor_id, allowed_department_ids=(DEPT, other))
+    repository = WorkspaceEvidenceRepository(database, broad)
+    assert repository.search_evidence("timeline", department_id=str(other)) == []
+    assert repository.search_evidence("timeline", department_id=str(DEPT))

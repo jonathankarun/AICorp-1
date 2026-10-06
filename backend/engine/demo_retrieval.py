@@ -51,7 +51,7 @@ def _select_context(
         seen.add(dedupe_key)
 
         chunk_words = len(chunk.text.split())
-        if selected and word_count + chunk_words > max_context_words:
+        if word_count + chunk_words > max_context_words:
             continue
         if len(selected) >= max_chunks:
             break

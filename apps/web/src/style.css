@@ -181,3 +181,13 @@ aside form {
     font-size: 30px;
   }
 }
+
+select { display: block; width: 100%; padding: 11px; margin-top: 7px; font: inherit; }
+.card { margin-top: 32px; padding: 24px; border: 1px solid #cbd2cc; background: white; }
+.report-heading { display: flex; justify-content: space-between; gap: 16px; }
+.badge { font-size: 12px; color: #28583f; }
+.citation-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.source-details { padding: 20px; background: #edf5ec; overflow-wrap: anywhere; }
+.report-section p { white-space: pre-line; }
+
+.assignment-fields { border: 0; padding: 0; margin: 0; min-width: 0; }

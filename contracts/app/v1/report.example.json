@@ -1,0 +1,16 @@
+{
+  "report_id": "report-fixture-001",
+  "assignment_id": "assignment-fixture-001",
+  "version": 1,
+  "status": "draft",
+  "sections": [
+    {"name": "problem_summary", "content": "Fixture summary.", "citation_ids": ["cite-001"]},
+    {"name": "recommendation", "content": "Fixture recommendation.", "citation_ids": []}
+  ],
+  "citations": [
+    {"citation_id": "cite-001", "evidence_chunk_id": "chunk-fixture-001"}
+  ],
+  "assumptions": ["Synthetic fixture only"],
+  "missing_information": ["Real staffing levels"],
+  "expert_review_needed": ["Operational feasibility"]
+}

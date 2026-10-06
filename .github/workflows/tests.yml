@@ -41,5 +41,6 @@ jobs:
           cache-dependency-path: apps/web/package-lock.json
       - run: npm ci --prefix apps/web
       - run: npm run build --prefix apps/web
+      - run: npm run test:unit --prefix apps/web
       - run: npm exec --prefix apps/web -- playwright install --with-deps chromium
       - run: python scripts/test_week2_browser.py

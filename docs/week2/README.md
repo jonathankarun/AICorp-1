@@ -27,9 +27,10 @@ adapter. All included data is fictional. It requires no paid model API.
 - Twelve labeled retrieval cases: ten development cases and two held-out cases.
 - Disposable-database API/data tests and real Chromium workflow tests.
 
-The TA's integration goal is covered by the UI → API → data path. The UI is a
-new local implementation because Yasha's frontend was not in this checkout.
-Yasha can adopt it or reuse the published API from his own frontend.
+The integrated UI combines Yasha's assignment/report workflow with the local
+workspace and authenticated PostgreSQL API. Saved assignments can run through
+Jai's Week 2/3 pipeline with database evidence and a local mock preview adapter.
+See [integration details](frontend-integration.md) for changes and limitations.
 
 ## Boundaries that remain explicit
 

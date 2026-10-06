@@ -1,7 +1,7 @@
 # AICorp-1
 
 City of College Station AI Corps capstone prototype. Current code includes a
-Week 2 React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
+Week 2 React/FastAPI data workspace, PostgreSQL ingestion/search, Yasha's assignment form and citation viewer, and Jai's
 consulting engine with mock and real-data evidence adapters.
 All committed fixtures are fictional; no City data or live model key is required.
 
@@ -16,8 +16,11 @@ npm run build --prefix apps/web
 
 Open http://127.0.0.1:8000 and use the local token printed by the launcher.
 Upload `tests/fixtures/week2/engagement.pdf`, select the ready source, save an
-assignment, reload, and search its page-linked evidence.
+assignment, reload, and search its page-linked evidence. Click **Preview mock report**
+to run Jai's pipeline against the saved assignment and inspect citations to
+Jonathan's stored chunks. This is an evidence preview, not a live generated recommendation.
 
+- [Frontend/team integration and change explanation](docs/week2/frontend-integration.md)
 - [Week 2 overview](docs/week2/README.md)
 - [Setup, demonstration, and recovery](docs/week2/setup.md)
 - [File-by-file explanation and presentation notes](docs/week2/explanation.md)

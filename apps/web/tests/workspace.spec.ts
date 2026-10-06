@@ -19,6 +19,7 @@ test("real upload, saved selection, reload, source search, and failure preserves
   await page.getByRole("button", { name: "Upload PDF" }).click();
   await expect(page.getByText("ready", { exact: true })).toBeVisible();
   await page.getByRole("checkbox").check();
+  await page.getByLabel("Request type").selectOption("RFP");
   await page.getByRole("button", { name: "Save assignment" }).click();
   await expect(page.getByRole("status")).toContainText("Assignment saved");
   await page.reload();
@@ -27,10 +28,23 @@ test("real upload, saved selection, reload, source search, and failure preserves
     "Improve permit intake",
   );
   await expect(page.getByRole("checkbox")).toBeChecked();
+  await expect(page.getByLabel("Request type")).toHaveValue("RFP");
   await page.getByLabel("Search query").fill("timeline");
   await page.getByRole("button", { name: "Search evidence" }).click();
   await expect(page.locator("article")).toContainText("six weeks");
   await expect(page.locator("article h3")).toContainText("page 1");
+  await page.getByRole("button", { name: "Preview mock report" }).click();
+  const report = page.getByRole("region", { name: "mock report" });
+  await expect(report).toContainText("Structured mock report");
+  await expect(report).toContainText("Mock evidence preview");
+  await page.screenshot({ path: "../../evidence/local/integrated-report.png", fullPage: true });
+  await report.getByRole("button", { name: /cite-/ }).first().click();
+  await expect(page.getByLabel("source details")).toContainText("Document version:");
+  await expect(page.getByLabel("source details")).toContainText("page ");
+  await page.getByLabel("Problem", { exact: true }).fill("Improve permit intake with review");
+  await expect(page.getByRole("button", { name: "Preview mock report" })).toBeDisabled();
+  await expect(report).toHaveCount(0);
+  await page.getByLabel("Problem", { exact: true }).fill("Improve permit intake");
   await page
     .getByLabel("PDF file")
     .setInputFiles({

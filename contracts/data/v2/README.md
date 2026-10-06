@@ -51,6 +51,26 @@ outbound eligibility again. No evidence produces `needs_input` with
 `eligible_evidence` missing and zero model calls. Invalid UUID filters return a
 structured engine error. Existing mock behavior remains the default for Week 1.
 
+## Integrated report preview
+
+`POST /api/v1/assignments/{uuid}/consult` takes no body. It authenticates the caller
+and loads their saved assignment with the existing owner/department checks. It
+runs Jai's Week 2/3 pipeline with a database repository and a local mock adapter.
+At least one requested report section is required (`required_sections_missing`,
+422). It returns `report`, `needs_input`, `evidence_gap`, or `error`, plus an
+`evidence` array containing exactly the chunks supplied to the mock adapter.
+Report responses include usage, retrieval trace, section evidence map, and
+methodology stages. Citation chunk IDs resolve against that evidence array.
+
+The adapter applies assignment department and selected version filters before
+retrieval. No selected versions means all eligible sources in that department.
+Only ready, readable, externally eligible chunks are considered; no eligible
+evidence stops with zero adapter calls. Context is capped at five whole chunks
+and 450 words, including the first chunk. The response quotes evidence and labels
+it a mock preview; it does not generate a recommendation, call a live provider,
+or persist a report. Missing cost scope yields null cost amounts; unrelated
+fixture costs and aggregate spending totals are never substituted.
+
 ## Errors
 
 Error JSON has `error.code`; validation may include field locations, never raw

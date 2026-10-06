@@ -33,10 +33,13 @@ is one relative API prefix in the client, with no provider secret in the bundle.
    that both the assignment fields and selected version remain saved.
 4. Search **timeline**. Explain that the result includes page 1 and a stable
    version/chunk ID. Search **deliverables** to see page 2.
-5. Search **quasar spectroscopy** to demonstrate an evidence gap.
-6. Upload a corrupt `.pdf` to show failed status and corrective guidance. The
+5. Click **Preview mock report**. Open a citation to inspect the stored chunk
+   and document version. Editing the form hides the old report and requires a
+   new save. The preview is temporary and makes no live model calls.
+6. Search **quasar spectroscopy** to demonstrate an evidence gap.
+7. Upload a corrupt `.pdf` to show failed status and corrective guidance. The
    assignment form remains intact. A non-PDF is rejected before creating a job.
-7. In another terminal, run the financial/retrieval demonstration below. Show
+8. In another terminal, run the financial/retrieval demonstration below. Show
    five inserted payments, five unchanged on repeat import, and the exact totals.
 
 Only the exact bundled fictional PDF hash is automatically eligible for external
@@ -44,6 +47,10 @@ model context through the local HTTP adapter. Other readable PDFs can be saved
 and selected, but the model-context search excludes them pending approval. The
 frontend explicitly labels this distinction. Upload metadata cannot grant itself
 external-model permission.
+
+Set `AICORP_PORT=8011` when running the launcher or browser-test script if port
+8000 is occupied. Open that port for the built UI; the Vite development proxy
+continues to target the default port 8000.
 
 ## Validation
 

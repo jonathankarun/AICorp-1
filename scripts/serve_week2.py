@@ -20,8 +20,9 @@ if __name__ == "__main__":
         seed(conn)
     os.environ["AICORP_LOCAL_DEMO"] = "1"
     os.environ.setdefault("AICORP_DEMO_TOKEN", secrets.token_urlsafe(24))
-    print("Local fixture demo: http://127.0.0.1:8000", flush=True)
+    port = int(os.environ.get("AICORP_PORT", "8000"))
+    print(f"Local fixture demo: http://127.0.0.1:{port}", flush=True)
     print("Demo token (local only): " + os.environ["AICORP_DEMO_TOKEN"], flush=True)
     import uvicorn
 
-    uvicorn.run("backend.api.app:app", host="127.0.0.1", port=8000)
+    uvicorn.run("backend.api.app:app", host="127.0.0.1", port=port)

@@ -20,6 +20,11 @@ and authorized live-model evaluation.”
 
 ## The two main paths
 
+- `backend/engine/workspace.py`: bridges the shared database search to Jai's
+  Week 2/3 repository protocol and produces a labeled mock evidence preview.
+  The authenticated assignment `consult` route returns validated report citations
+  and the exact evidence used. It does not fabricate comparable cost records.
+
 ### Frontend and documents
 
 1. **Browser:** React keeps the assignment fields, selected source IDs, upload
@@ -118,6 +123,11 @@ and authorized live-model evaluation.”
   `needs_input` before a model call or a structured invalid-retrieval error.
   Report/citation validation remains in place.
 
+- `backend/engine/workspace.py`: bridges the shared database search to Jai's
+  Week 2/3 repository protocol and produces a labeled mock evidence preview.
+  The authenticated assignment `consult` route returns validated report citations
+  and the exact evidence used. It does not fabricate comparable cost records.
+
 ### Frontend
 
 - `apps/web/package.json`: React/Vite/TypeScript dependencies and build/test commands.
@@ -125,11 +135,16 @@ and authorized live-model evaluation.”
 - `apps/web/tsconfig.json`: strict TypeScript compilation settings.
 - `apps/web/vite.config.ts`: development API proxy to localhost:8000.
 - `apps/web/index.html`: page shell and React entry point.
-- `apps/web/src/main.tsx`: the complete local workspace: token connection, assignment
+- `apps/web/src/main.tsx`: mounts `App.tsx`.
+- `apps/web/src/App.tsx`: the integrated workspace: token connection, assignment
   form, PDF input, job polling, ready-source checkboxes, persistence/reload, and
   evidence search. It sends only permitted input fields. Failed uploads or saves
   do not clear form state. It displays retrieved text as escaped React text.
   The token stays in session storage; only the last assignment ID is in local storage.
+- `apps/web/src/components/AssignmentForm.tsx`: controlled assignment fields,
+  required report sections, request type, and ready source selection.
+- `apps/web/src/components/ReportView.tsx`: Yasha's report sections, citation buttons,
+  source details, review needs, and explicit missing cost evidence.
 - `apps/web/src/style.css`: responsive two-column layout, typography, inputs,
   status/error displays, focus indicators, and narrow-screen layout.
 - `apps/web/playwright.config.ts`: browser test settings and real API startup.
