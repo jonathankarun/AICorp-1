@@ -1,0 +1,172 @@
+{
+  "answerable_top5": {
+    "passed": 9,
+    "total": 9,
+    "fraction": 1.0
+  },
+  "all_behavior_checks": {
+    "passed": 12,
+    "total": 12,
+    "fraction": 1.0
+  },
+  "results": [
+    {
+      "id": "q01",
+      "query": "six week improvement timeline",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-fixture-001"
+      ],
+      "selected_document_version_ids": [
+        "doc-fixture-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q02",
+      "query": "intake turnaround time and routing problems",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-intake-001",
+        "chunk-intake-002"
+      ],
+      "selected_document_version_ids": [
+        "doc-intake-v1",
+        "doc-intake-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q03",
+      "query": "standardize request handling with a checklist and triage",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-intake-002"
+      ],
+      "selected_document_version_ids": [
+        "doc-intake-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q04",
+      "query": "requested deliverables findings alternatives risks measures of success",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-fixture-002",
+        "chunk-intake-002"
+      ],
+      "selected_document_version_ids": [
+        "doc-fixture-v1",
+        "doc-intake-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q05",
+      "query": "historical intake consulting payment cost",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-cost-001"
+      ],
+      "selected_document_version_ids": [
+        "doc-cost-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q06",
+      "query": "six week pilot schedule duration",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-fixture-001"
+      ],
+      "selected_document_version_ids": [
+        "doc-fixture-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q07",
+      "query": "cycle time baseline for intake workflow",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-intake-001",
+        "chunk-intake-002"
+      ],
+      "selected_document_version_ids": [
+        "doc-intake-v1",
+        "doc-intake-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q08",
+      "query": "implementation timeline and success metrics",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-intake-002",
+        "chunk-fixture-001",
+        "chunk-fixture-002"
+      ],
+      "selected_document_version_ids": [
+        "doc-intake-v1",
+        "doc-fixture-v1",
+        "doc-fixture-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q09",
+      "query": "cost of prior workflow review",
+      "expected_behavior": "answerable",
+      "selected_chunk_ids": [
+        "chunk-cost-002",
+        "chunk-cost-001"
+      ],
+      "selected_document_version_ids": [
+        "doc-cost-v1",
+        "doc-cost-v1"
+      ],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q10",
+      "query": "fire station roof replacement structural beam inspection",
+      "expected_behavior": "no_evidence",
+      "selected_chunk_ids": [],
+      "selected_document_version_ids": [],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q11",
+      "query": "water treatment chemistry chlorine residual",
+      "expected_behavior": "no_evidence",
+      "selected_chunk_ids": [],
+      "selected_document_version_ids": [],
+      "rejected_chunk_ids": [],
+      "passed": true
+    },
+    {
+      "id": "q12",
+      "query": "confidential vendor credentials staff qualifications",
+      "expected_behavior": "forbidden",
+      "selected_chunk_ids": [],
+      "selected_document_version_ids": [],
+      "rejected_chunk_ids": [
+        "chunk-forbidden-001"
+      ],
+      "passed": true
+    }
+  ]
+}

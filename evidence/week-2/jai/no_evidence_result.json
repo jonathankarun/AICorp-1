@@ -1,0 +1,8 @@
+{
+  "result_type": "evidence_gap",
+  "assignment_id": "assignment-no-evidence-001",
+  "message": "No eligible evidence was retrieved. Add an allowed source, broaden the approved corpus, or clarify the request before generation.",
+  "query": "Evaluate chlorine residual chemistry for a municipal water system. Determine a preliminary chlorine dosage recommendation. findings recommendation",
+  "rejected_chunk_ids": [],
+  "model_calls": 0
+}

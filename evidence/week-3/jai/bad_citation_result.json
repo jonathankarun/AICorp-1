@@ -1,0 +1,6 @@
+{
+  "result_type": "error",
+  "code": "invalid_model_output",
+  "message": "citation 'cite-fake' points to unknown evidence chunk 'chunk-does-not-exist'",
+  "retryable": false
+}

@@ -1,0 +1,10 @@
+{
+  "result_type": "evidence_gap",
+  "assignment_id": "assignment-forbidden-001",
+  "message": "No eligible evidence was retrieved. Add an allowed source, broaden the approved corpus, or clarify the request before generation.",
+  "query": "Summarize confidential vendor credentials and staff qualifications for the intake engagement. Prepare a qualifications summary. findings",
+  "rejected_chunk_ids": [
+    "chunk-forbidden-001"
+  ],
+  "model_calls": 0
+}

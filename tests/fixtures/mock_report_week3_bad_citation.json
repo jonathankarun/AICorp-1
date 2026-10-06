@@ -1,0 +1,21 @@
+{
+  "report_id": "report-week3-bad",
+  "assignment_id": "overwritten-by-adapter",
+  "version": 1,
+  "status": "draft",
+  "sections": [
+    {"name": "problem_summary", "content": "Bad citation demo.", "citation_ids": ["cite-fake"]},
+    {"name": "findings", "content": "Bad citation demo.", "citation_ids": []},
+    {"name": "alternatives", "content": "Bad citation demo.", "citation_ids": []},
+    {"name": "recommendation", "content": "Bad citation demo.", "citation_ids": []},
+    {"name": "implementation_steps", "content": "Bad citation demo.", "citation_ids": []},
+    {"name": "risks", "content": "Bad citation demo.", "citation_ids": []},
+    {"name": "cost_evidence", "content": "Bad citation demo.", "citation_ids": []}
+  ],
+  "citations": [
+    {"citation_id": "cite-fake", "evidence_chunk_id": "chunk-does-not-exist"}
+  ],
+  "assumptions": [],
+  "missing_information": [],
+  "expert_review_needed": []
+}

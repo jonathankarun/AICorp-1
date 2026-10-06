@@ -1,0 +1,99 @@
+[
+  {
+    "id": "q01",
+    "query": "six week improvement timeline",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-fixture-v1"
+    ]
+  },
+  {
+    "id": "q02",
+    "query": "intake turnaround time and routing problems",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-intake-v1"
+    ]
+  },
+  {
+    "id": "q03",
+    "query": "standardize request handling with a checklist and triage",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-intake-v1"
+    ]
+  },
+  {
+    "id": "q04",
+    "query": "requested deliverables findings alternatives risks measures of success",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-fixture-v1"
+    ]
+  },
+  {
+    "id": "q05",
+    "query": "historical intake consulting payment cost",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-cost-v1"
+    ]
+  },
+  {
+    "id": "q06",
+    "query": "six week pilot schedule duration",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-fixture-v1"
+    ]
+  },
+  {
+    "id": "q07",
+    "query": "cycle time baseline for intake workflow",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-intake-v1"
+    ]
+  },
+  {
+    "id": "q08",
+    "query": "implementation timeline and success metrics",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-fixture-v1",
+      "doc-intake-v1"
+    ]
+  },
+  {
+    "id": "q09",
+    "query": "cost of prior workflow review",
+    "expected_behavior": "answerable",
+    "expected_document_version_ids": [
+      "doc-cost-v1"
+    ]
+  },
+  {
+    "id": "q10",
+    "query": "fire station roof replacement structural beam inspection",
+    "expected_behavior": "no_evidence",
+    "expected_document_version_ids": []
+  },
+  {
+    "id": "q11",
+    "query": "water treatment chemistry chlorine residual",
+    "expected_behavior": "no_evidence",
+    "expected_document_version_ids": []
+  },
+  {
+    "id": "q12",
+    "query": "confidential vendor credentials staff qualifications",
+    "expected_behavior": "forbidden",
+    "expected_document_version_ids": [],
+    "selected_document_version_ids": [
+      "doc-forbidden-v1"
+    ],
+    "forbidden_chunk_ids": [
+      "chunk-forbidden-001"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "assignment_id": "assignment-week3-001",
+  "schema_version": "1.0",
+  "problem": "Develop a preliminary intake process improvement plan using prior timeline, baseline, and cost evidence.",
+  "department_id": "dept-fixture-001",
+  "intended_result": "Recommend a source-backed improvement approach with alternatives, implementation steps, risks, and historical cost evidence.",
+  "topic": "intake workflow improvement",
+  "required_sections": [
+    "problem_summary",
+    "findings",
+    "alternatives",
+    "recommendation",
+    "implementation_steps",
+    "risks",
+    "cost_evidence"
+  ],
+  "audience": "City department manager",
+  "constraints": ["Use only synthetic evidence", "Treat historical payments as context, not a current quote"],
+  "selected_document_version_ids": [],
+  "request_type": "problem"
+}

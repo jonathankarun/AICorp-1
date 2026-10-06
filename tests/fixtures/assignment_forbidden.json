@@ -1,0 +1,12 @@
+{
+  "assignment_id": "assignment-forbidden-001",
+  "schema_version": "1.0",
+  "problem": "Summarize confidential vendor credentials and staff qualifications for the intake engagement.",
+  "department_id": "dept-fixture-001",
+  "intended_result": "Prepare a qualifications summary.",
+  "required_sections": ["findings"],
+  "audience": "Reviewer",
+  "constraints": ["Use only the selected document"],
+  "selected_document_version_ids": ["doc-forbidden-v1"],
+  "request_type": "problem"
+}

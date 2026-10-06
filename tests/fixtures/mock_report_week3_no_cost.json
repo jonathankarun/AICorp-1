@@ -1,0 +1,23 @@
+{
+  "report_id": "report-week3-no-cost",
+  "assignment_id": "overwritten-by-adapter",
+  "version": 1,
+  "status": "draft",
+  "sections": [
+    {"name": "problem_summary", "content": "The fictional intake workflow needs a preliminary improvement plan.", "citation_ids": ["cite-intake"]},
+    {"name": "findings", "content": "The available fixture identifies cycle-time and routing problems.", "citation_ids": ["cite-intake"]},
+    {"name": "alternatives", "content": "A checklist-only option and a checklist-plus-triage option can be reviewed.", "citation_ids": ["cite-pilot"]},
+    {"name": "recommendation", "content": "Pilot the checklist and collect more evidence before making a cost claim.", "citation_ids": ["cite-pilot"]},
+    {"name": "implementation_steps", "content": "Run the pilot within the documented six-week horizon.", "citation_ids": ["cite-timeline"]},
+    {"name": "risks", "content": "The main limitation is incomplete evidence, especially missing comparable cost records.", "citation_ids": ["cite-intake"]},
+    {"name": "cost_evidence", "content": "No comparable cost evidence is available, so no historical cost range is asserted.", "citation_ids": []}
+  ],
+  "citations": [
+    {"citation_id": "cite-intake", "evidence_chunk_id": "chunk-intake-001"},
+    {"citation_id": "cite-pilot", "evidence_chunk_id": "chunk-intake-002"},
+    {"citation_id": "cite-timeline", "evidence_chunk_id": "chunk-fixture-001"}
+  ],
+  "assumptions": ["Synthetic fixture only"],
+  "missing_information": ["Comparable historical cost evidence"],
+  "expert_review_needed": ["Cost review before any planning use"]
+}

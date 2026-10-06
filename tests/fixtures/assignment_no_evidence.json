@@ -1,0 +1,12 @@
+{
+  "assignment_id": "assignment-no-evidence-001",
+  "schema_version": "1.0",
+  "problem": "Evaluate chlorine residual chemistry for a municipal water system.",
+  "department_id": "dept-fixture-001",
+  "intended_result": "Determine a preliminary chlorine dosage recommendation.",
+  "required_sections": ["findings", "recommendation"],
+  "audience": "City manager",
+  "constraints": ["Use only approved evidence"],
+  "selected_document_version_ids": [],
+  "request_type": "problem"
+}
