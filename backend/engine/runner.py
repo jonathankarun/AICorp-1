@@ -1,3 +1,5 @@
+# this file runs the mock engine from the terminal
+# it reads an assignment JSON file and saves the result as JSON too
 from __future__ import annotations
 
 import argparse

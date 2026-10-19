@@ -1,3 +1,5 @@
+# this file runs checks and saves the actual week 1 test output
+# the manifest records the command, code revision, and whether each check passed
 """Record actual Week 1 checks; run with .venv/bin/python from any directory."""
 from datetime import datetime, timezone
 import json

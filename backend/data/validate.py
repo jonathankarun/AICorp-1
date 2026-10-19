@@ -1,3 +1,5 @@
+# this file runs the week 1 database demo and records the results
+# it checks known values in a fresh database so the demo is repeatable
 """One-command Week 1 demonstration against a newly created PostgreSQL database."""
 
 from __future__ import annotations

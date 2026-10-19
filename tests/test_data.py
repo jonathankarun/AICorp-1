@@ -1,3 +1,5 @@
+# this file checks the original database rules with real PostgreSQL
+# it covers repeat setup, exact money, permissions, and unchanged source versions
 """Real PostgreSQL checks. Run: python -m pytest --run-data -q"""
 from copy import deepcopy
 from decimal import Decimal
@@ -103,7 +105,7 @@ def test_unknown_engagement_can_remain_null(seeded_db):
 
 
 def test_refunds_use_exact_decimal_without_float(seeded_db):
-    # Validates the schema permits future refunds; does not alter the seed fixture.
+    # this checks that refunds work without changing the original fixture
     insert_payment(seeded_db, amount="-20.00")
     result = seeded_db.execute("SELECT sum(amount) AS total FROM payments").fetchone()["total"]
     assert isinstance(result, Decimal)

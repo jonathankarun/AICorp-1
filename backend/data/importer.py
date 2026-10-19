@@ -1,3 +1,5 @@
+# this file reads payment CSVs and calculates spending
+# it keeps rejected rows and corrections so we can see where each amount came from
 """CSV staging, exact money, conservative identity matching, and revision history."""
 
 import csv
@@ -72,7 +74,7 @@ def clean_row(conn, row, source):
         "classification_reason": r["rationale"],
         "source_uri": source["location"],
     }
-    # No transaction ID: conservative composite, collisions require human review.
+    # without a transaction ID we build a fallback key; collisions still need review
     fallback = "|".join(
         [
             record["vendor_id"],
@@ -118,6 +120,7 @@ def import_csv(conn, raw: bytes, manifest: dict):
     if set(reader.fieldnames or []) != REQUIRED:
         raise ValueError("CSV headers must match the published contract")
     rows = list(reader)
+    # this stages the rows first so duplicate IDs in the same file can be caught
     staged = []
     for number, row in enumerate(rows, 2):
         try:
@@ -134,6 +137,7 @@ def import_csv(conn, raw: bytes, manifest: dict):
         "unchanged": 0,
         "rejected": [],
     }
+    # these changes either save together or roll back together
     with conn.transaction():
         conn.execute("SELECT pg_advisory_xact_lock(2026100501)")
         conn.execute(

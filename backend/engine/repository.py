@@ -1,3 +1,5 @@
+# this file holds the fictional evidence for the original engine demo
+# the fixed chunks make the mock report repeatable
 from .models import Assignment, EvidenceChunk
 
 
@@ -22,5 +24,5 @@ FIXTURE_EVIDENCE = [
 
 
 def get_fixture_evidence(assignment: Assignment) -> list[EvidenceChunk]:
-    # Week 1 deliberately uses a fixed synthetic fixture instead of live City data.
+    # this returns the same fictional evidence each time for the week 1 demo
     return FIXTURE_EVIDENCE.copy()

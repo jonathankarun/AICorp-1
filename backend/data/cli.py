@@ -1,3 +1,5 @@
+# this file lets us run database tasks from the terminal
+# it handles migrations, fixture setup, and engagement lookups
 """Run with python -m backend.data.cli from the repository root."""
 import argparse
 import json
@@ -40,7 +42,7 @@ def main() -> int:
         print(json.dumps({"code": "invalid_configuration_or_data", "message": str(exc)}), file=sys.stderr)
         return 1
     except psycopg.Error:
-        # Driver errors may include connection details; keep the CLI response safe.
+        # database errors can include credentials, so this prints a safe message instead
         print(json.dumps({"code": "database_error", "message": "Database operation failed; check configuration, service health, and migrations."}), file=sys.stderr)
         return 1
 

@@ -1,3 +1,5 @@
+// this file checks the workspace in a real browser
+// it makes sure saved inputs survive reloads and errors stay visible
 import { test, expect } from "@playwright/test";
 import path from "node:path";
 const token = process.env.AICORP_DEMO_TOKEN!;

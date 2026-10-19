@@ -1,3 +1,5 @@
+# this file connects the web app to the database through API routes
+# the demo token is for local testing and the server decides what sources are allowed
 """Authenticated local demo API. Real identity-provider integration is deferred."""
 
 import hashlib

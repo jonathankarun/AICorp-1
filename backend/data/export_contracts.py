@@ -1,3 +1,5 @@
+# this file writes the week 1 schemas and example payloads
+# the team can use these files to agree on what the data boundary returns
 """Regenerate the proposed repository schemas and examples without a database."""
 import json
 from uuid import UUID

@@ -1,3 +1,5 @@
+# this file connects the engine to real database evidence
+# it filters permissions, removes repeated text, and keeps the context small enough
 """Real evidence adapter: explicit filters, deduplication, bounded text context."""
 
 from uuid import UUID

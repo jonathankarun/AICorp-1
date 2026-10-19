@@ -1,3 +1,5 @@
+// this file builds the evidence workspace in the browser
+// it lets us save an assignment, upload PDFs, and search the selected sources
 import { useEffect, useState, type FormEvent } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
@@ -60,6 +62,7 @@ function App() {
   const [query, setQuery] = useState(""),
     [chunks, setChunks] = useState<Chunk[]>([]),
     [searched, setSearched] = useState(false);
+  // this helper adds the demo token and turns API failures into readable messages
   async function api(path: string, options: RequestInit = {}) {
     const response = await fetch("/api/v1" + path, {
       ...options,
@@ -96,6 +99,7 @@ function App() {
       setError((e as Error).message);
     }
   }
+  // this refreshes upload progress while connected and stops polling when we leave
   useEffect(() => {
     if (!connected) return;
     const id = setInterval(() => {
@@ -136,7 +140,7 @@ function App() {
     setError("");
     setNotice("");
     const { assignment_id, ...body } = form;
-    // Only contract input fields are sent, never server-generated fields.
+    // this sends just the input fields; the server handles IDs and timestamps
     const input = {
       problem: body.problem,
       department_id: body.department_id,

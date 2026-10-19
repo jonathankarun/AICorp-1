@@ -1,3 +1,5 @@
+# this file runs the assignment through the report engine
+# it checks scope and evidence before calling the model and validates what comes back
 from __future__ import annotations
 
 from pydantic import ValidationError
@@ -44,6 +46,7 @@ def run_engine(
             code="invalid_assignment", message=str(exc), retryable=False
         )
 
+    # this stops early if the assignment still needs details
     scope = check_scope(assignment)
     if scope.status == "needs_input":
         return EngineNeedsInput(
@@ -71,6 +74,7 @@ def run_engine(
 
     try:
         raw_report, usage = model_client.generate(assignment, evidence)
+        # the report can only cite chunks we actually gave the model
         report = validate_report(raw_report, {e.chunk_id for e in evidence})
     except (ValidationError, ValueError, KeyError) as exc:
         return EngineFailure(

@@ -1,0 +1,60 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "topic": {
+      "anyOf": [
+        {
+          "maxLength": 300,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Topic"
+    },
+    "department_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Department Id"
+    },
+    "specialty": {
+      "anyOf": [
+        {
+          "maxLength": 300,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Specialty"
+    },
+    "for_external_model": {
+      "default": true,
+      "title": "For External Model",
+      "type": "boolean"
+    },
+    "limit": {
+      "default": 10,
+      "maximum": 50,
+      "minimum": 1,
+      "title": "Limit",
+      "type": "integer"
+    }
+  },
+  "title": "ComparableInput",
+  "type": "object"
+}

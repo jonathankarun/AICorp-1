@@ -1,3 +1,5 @@
+# this file creates the input structures for assignments, uploads, and searches
+# the validation catches missing or unexpected fields before they reach storage
 """Strict input contracts shared by the data service and HTTP API."""
 
 from datetime import date

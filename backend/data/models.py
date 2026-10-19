@@ -1,3 +1,5 @@
+# this file creates the data structures for the original database handoff
+# these describe departments, vendors, engagements, and who can read them
 """Proposed Week 1 repository contract, separate from the existing engine schema."""
 from typing import Literal
 from uuid import UUID
@@ -10,7 +12,7 @@ class Contract(BaseModel):
 
 
 class AccessContext(Contract):
-    # Supplied by the trusted server. CLI test identities are not authentication.
+    # the server supplies these permissions; terminal test IDs are just for the demo
     actor_id: UUID
     allowed_department_ids: tuple[UUID, ...] = ()
 

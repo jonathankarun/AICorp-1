@@ -1,3 +1,5 @@
+// this file configures the browser test runner
+// it starts the local API and tells the tests where to find the app
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: "tests",

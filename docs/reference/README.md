@@ -61,3 +61,9 @@ or `/consult` routes on this revision; the root README's planned architecture is
 conceptual. There is no live LLM provider, production login, OCR, vector search,
 report persistence, or deployed production service. See the branch guide for the
 new consultation endpoint on `yasha-week2`.
+
+## Week 3 addition
+
+The [Week 3 handoff](../week3/README.md) and [v3 data contract](../../contracts/data/v3/README.md)
+cover the new relationship queries and report/citation storage. The detailed pages
+in this handbook describe the Week 1/2 baseline; use that handoff for the new modules.

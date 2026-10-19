@@ -1,0 +1,106 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "engagement_id": {
+      "format": "uuid",
+      "title": "Engagement Id",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "specialty",
+        "method",
+        "deliverable",
+        "recommendation",
+        "outcome",
+        "related_engagement",
+        "contract_value"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "maxLength": 10000,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Value"
+    },
+    "unknown_reason": {
+      "anyOf": [
+        {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Unknown Reason"
+    },
+    "evidence_chunk_id": {
+      "format": "uuid",
+      "title": "Evidence Chunk Id",
+      "type": "string"
+    },
+    "related_engagement_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Related Engagement Id"
+    },
+    "amount": {
+      "anyOf": [
+        {
+          "minimum": 0.0,
+          "type": "number"
+        },
+        {
+          "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,16}|(?=[\\d.]{1,19}0*$)\\d{0,16}\\.\\d{0,2}0*$)",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Amount"
+    },
+    "currency": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Currency"
+    }
+  },
+  "required": [
+    "engagement_id",
+    "kind",
+    "evidence_chunk_id"
+  ],
+  "title": "FactInput",
+  "type": "object"
+}

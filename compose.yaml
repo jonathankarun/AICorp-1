@@ -1,3 +1,5 @@
+# this file starts the local PostgreSQL database
+# the saved volume keeps our data when the container restarts
 name: aicorp-week1
 services:
   db:

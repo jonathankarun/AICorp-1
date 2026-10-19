@@ -1,3 +1,5 @@
+# this file adds the small fictional week 1 dataset
+# running it again should keep the same records instead of adding duplicates
 """Insert the fixed Week 1 fixture atomically, with no duplicate or silent updates."""
 from __future__ import annotations
 
@@ -21,7 +23,7 @@ def seed(conn) -> dict[str, int]:
     data = load_fixture()
     inserted = {}
     with conn.transaction():
-        # A changed fixture must fail visibly, not overwrite an existing record.
+        # this stops if the fixture changed instead of overwriting existing data
         for table, records in (
             ("departments", [data["department"]]),
             ("vendors", [data["vendor"]]),

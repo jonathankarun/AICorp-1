@@ -1,3 +1,5 @@
+# this file checks the week 2 upload, import, and assignment workflow
+# it uses a fresh database and checks both successful requests and failure cases
 """Week 2 acceptance and regression checks using disposable PostgreSQL databases."""
 
 from io import BytesIO
@@ -148,7 +150,7 @@ def test_versions_and_page_search(database):
     assert first["status"] == "ready"
     repeat = ingest(database, document_id=first["document_id"])
     again = ingest(database, document_id=first["document_id"])
-    # Same content and metadata reuse even when the follow-up supplies document_id.
+    # adding the document ID on a repeat upload should still reuse the same version
     assert (
         first["document_version_id"]
         == repeat["document_version_id"]
@@ -352,7 +354,7 @@ def test_api_persistence_upload_and_failures(database):
 
 
 def test_api_cannot_self_approve_model_use(database):
-    # Valid altered PDF is not the approved fixture hash.
+    # this PDF is readable but its changed bytes are not on the demo allowlist
     with client_for(database) as client:
         headers = {"Authorization": "Bearer " + TOKEN}
         response = client.post(

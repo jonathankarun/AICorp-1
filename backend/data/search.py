@@ -1,3 +1,5 @@
+# this file searches PDF chunks for matching words
+# each result keeps its source and page so we can trace it back
 """Measured keyword baseline; all eligibility filters run before ranking."""
 
 import re
@@ -7,7 +9,7 @@ from .week2_models import SearchInput
 
 
 def search(conn, request: SearchInput, context):
-    # OR semantics helps multi-field assignment queries; lexemes are parameterized.
+    # this matches any query word so a longer assignment can still find useful chunks
     terms = sorted(set(re.findall(r"[\w]+", request.query.lower())))
     tsquery = " | ".join(terms)
     rows = []

@@ -1,3 +1,5 @@
+# this file checks the mock report engine
+# it covers a valid report, bad model output, and an assignment missing scope
 import json
 from pathlib import Path
 

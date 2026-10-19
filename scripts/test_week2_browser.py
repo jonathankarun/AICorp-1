@@ -1,3 +1,5 @@
+# this file runs the browser tests with a fresh database
+# it sets up the fictional records and passes the test connection to the web app
 """Run real-browser checks against a disposable, freshly migrated database."""
 
 import os

@@ -1,3 +1,5 @@
+# this file imports a payment CSV from the terminal
+# the manifest supplies the source details that go with those payments
 """Import a CSV plus source manifest into the configured local database."""
 
 import argparse

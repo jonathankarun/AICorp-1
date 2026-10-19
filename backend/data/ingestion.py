@@ -1,3 +1,5 @@
+# this file turns uploaded PDFs into searchable chunks
+# it keeps the original bytes and creates a new version when the source changes
 """Durable PDF intake; page-bounded chunks and immutable evidence versions."""
 
 import hashlib
@@ -66,7 +68,7 @@ def extract_chunks(content):
         chunks, total = [], 0
         for page_number, page in enumerate(reader.pages, 1):
             text = (page.extract_text() or "").strip()
-            # Partial extraction is also a review case: don't hide scanned pages.
+            # even one unreadable page needs review so we dont silently skip evidence
             if not text:
                 raise DataError("empty_or_scanned_page")
             total += len(text)
@@ -119,7 +121,7 @@ def process_job(conn, job_id):
             )
         return "failed"
     with conn.transaction():
-        # Serializes different jobs for the same document and duplicate workers.
+        # this lock keeps two workers from creating competing versions of the same document
         conn.execute(
             "SELECT document_id FROM documents WHERE document_id=%s FOR UPDATE",
             (job["document_id"],),
@@ -136,7 +138,7 @@ def process_job(conn, job_id):
           WHERE v.document_id=%s AND j.status='ready' ORDER BY v.version DESC LIMIT 1""",
             (job["document_id"],),
         ).fetchone()
-        # Unchanged content AND metadata reuse the immutable version.
+        # this reuses the old version only when both the bytes and source details match
         if (
             previous
             and previous["content_hash"] == job["content_hash"]

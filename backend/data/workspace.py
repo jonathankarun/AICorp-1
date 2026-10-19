@@ -1,3 +1,5 @@
+# this file saves assignments and reads upload progress
+# only ready sources the caller can access are available for selection
 """Persist assignments and expose only ready, authorized document versions."""
 
 from uuid import uuid4
@@ -32,6 +34,7 @@ def list_documents(conn, context):
 
 def save_assignment(conn, data: AssignmentInput, context):
     require_department(context, data.department_id)
+    # this checks every selected source before we save anything
     selected = set(data.selected_document_version_ids)
     allowed = {d["document_version_id"] for d in list_documents(conn, context)}
     if not selected <= allowed:

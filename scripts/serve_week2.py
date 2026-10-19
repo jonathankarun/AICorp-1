@@ -1,3 +1,5 @@
+# this file starts the local week 2 web demo
+# it makes a temporary demo token for connecting the browser to the API
 """Start the local fixture demo. Prints a new short-lived local access token."""
 
 import os

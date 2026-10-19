@@ -1,3 +1,5 @@
+# this file creates the data structures used by the report engine
+# assignments, evidence, citations, and results all use these shapes
 from __future__ import annotations
 
 from typing import Literal

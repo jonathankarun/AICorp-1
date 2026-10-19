@@ -1,0 +1,115 @@
+{
+  "$defs": {
+    "Citation": {
+      "properties": {
+        "citation_id": {
+          "title": "Citation Id",
+          "type": "string"
+        },
+        "evidence_chunk_id": {
+          "title": "Evidence Chunk Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "citation_id",
+        "evidence_chunk_id"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "ReportSection": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "content": {
+          "title": "Content",
+          "type": "string"
+        },
+        "citation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Citation Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "content"
+      ],
+      "title": "ReportSection",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "report_id": {
+      "title": "Report Id",
+      "type": "string"
+    },
+    "assignment_id": {
+      "title": "Assignment Id",
+      "type": "string"
+    },
+    "version": {
+      "default": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "status": {
+      "default": "draft",
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "sections": {
+      "items": {
+        "$ref": "#/$defs/ReportSection"
+      },
+      "title": "Sections",
+      "type": "array"
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "missing_information": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Information",
+      "type": "array"
+    },
+    "expert_review_needed": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Expert Review Needed",
+      "type": "array"
+    }
+  },
+  "required": [
+    "report_id",
+    "assignment_id",
+    "sections",
+    "citations"
+  ],
+  "title": "Report",
+  "type": "object"
+}

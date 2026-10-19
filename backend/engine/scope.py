@@ -1,3 +1,5 @@
+# this file checks whether an assignment has enough detail to start
+# missing scope turns into follow-up questions before a model call happens
 from .models import Assignment, ScopeCheckResult
 
 
@@ -5,7 +7,7 @@ def check_scope(assignment: Assignment) -> ScopeCheckResult:
     missing: list[str] = []
     questions: list[str] = []
 
-    # Week 1 minimum: problem + intended result + enough constraints to begin.
+    # this checks for the basic scope we need before starting a report
     if not assignment.problem.strip():
         missing.append("problem")
         questions.append("What problem should the City address?")
@@ -18,7 +20,7 @@ def check_scope(assignment: Assignment) -> ScopeCheckResult:
         missing.append("department_id")
         questions.append("Which department owns or sponsors this request?")
 
-    # An RFQ that only asks for qualifications is not enough to generate a consulting solution.
+    # asking for qualifications alone doesnt tell us what problem the report should solve
     if assignment.request_type == "RFQ" and not assignment.constraints:
         missing.append("constraints")
         questions.append(

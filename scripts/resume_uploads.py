@@ -1,3 +1,5 @@
+# this file retries pending or interrupted PDF jobs after the API is stopped
+# the saved upload bytes let processing continue without another upload
 """After stopping the API, resume durable pending/interrupted PDF jobs."""
 
 import sys

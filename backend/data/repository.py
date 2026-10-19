@@ -1,3 +1,5 @@
+# this file looks up an engagement with its vendor and department
+# it only returns work the caller is allowed to see
 """The data boundary used by the API and engine, rather than duplicated SQL."""
 from uuid import UUID
 

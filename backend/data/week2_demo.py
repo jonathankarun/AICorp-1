@@ -1,3 +1,5 @@
+# this file runs the week 2 import and search demo
+# it uses fictional data and records what passed plus the keyword search limits
 """Reproducible Week 2 import, persistence and retrieval baseline in a fresh DB."""
 
 import argparse

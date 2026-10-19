@@ -1,3 +1,5 @@
+# this file opens database connections and runs new migrations
+# it checks old migration hashes so an existing database doesnt silently change
 """Local connection configuration and transactional, checksummed migrations."""
 from __future__ import annotations
 
@@ -35,7 +37,7 @@ def migrate(conn) -> list[str]:
     """Apply new SQL files once; reject edits to already applied migrations."""
     applied = []
     with conn.transaction():
-        # Serialize competing startup processes until this transaction commits.
+        # this lets only one startup process change the schema at a time
         conn.execute("SELECT pg_advisory_xact_lock(2026092701)")
         conn.execute("""
             CREATE TABLE IF NOT EXISTS schema_migrations (

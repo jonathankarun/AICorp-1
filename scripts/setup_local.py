@@ -1,3 +1,5 @@
+# this file sets up the local Python environment and database
+# it starts PostgreSQL, runs migrations, and adds the fictional starter records
 """Create a local Python environment, start PostgreSQL, migrate and seed.
 
 Run from any directory with Python 3.12 or 3.13. Docker Desktop must be running.
@@ -22,7 +24,7 @@ def main():
     run("docker", "info", "--format", "Docker server: {{.ServerVersion}}")
     env_path = ROOT / ".env"
     if not env_path.exists():
-        # Exclusive creation and owner-only permissions, including at creation time.
+        # this creates the settings file only if missing and keeps it readable by its owner
         fd = os.open(env_path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
         with os.fdopen(fd, "w") as stream:
             stream.write((ROOT / ".env.example").read_text().replace(

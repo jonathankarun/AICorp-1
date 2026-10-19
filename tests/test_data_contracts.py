@@ -1,3 +1,5 @@
+# this file checks the published week 1 data contracts
+# it catches schemas or examples that no longer match the code
 import json
 
 from backend.data.db import ROOT

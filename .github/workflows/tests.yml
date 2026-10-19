@@ -1,3 +1,5 @@
+# this file runs backend and browser checks when code reaches GitHub
+# it uses a fresh PostgreSQL service and fictional fixtures for the tests
 name: Data and workspace checks
 on: [push, pull_request]
 permissions:
@@ -34,6 +36,7 @@ jobs:
       - run: python -m pytest --run-data -q
       - run: python -m backend.data.validate
       - run: python -m backend.data.week2_demo
+      - run: python -m backend.data.week3_demo
       - uses: actions/setup-node@v4
         with:
           node-version: '22'

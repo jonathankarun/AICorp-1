@@ -1,3 +1,5 @@
+# this file defines how the engine talks to a model
+# the mock adapter reads a saved response so tests dont need a paid model call
 from __future__ import annotations
 
 import json

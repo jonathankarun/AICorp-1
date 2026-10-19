@@ -1,9 +1,18 @@
 # AICorp-1
 
 City of College Station AI Corps capstone prototype. Current code includes a
-Week 2 React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
+Week 3 comparable-work queries and report/citation storage, the Week 2
+React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
 consulting engine with mock and real-data evidence adapters.
 All committed fixtures are fictional; no City data or live model key is required.
+
+## Jonathan's Week 3
+
+See [Week 3 setup and handoff](docs/week3/README.md) for evidence-backed
+engagement relationships, separate payment totals, and immutable report versions.
+Run `.venv/bin/python -m backend.data.week3_demo` for a disposable-database demo.
+The report storage operations are ready for API/engine integration; report UI wiring
+remains pending. Source files also include short informal purpose comments.
 
 ## Complete code documentation
 

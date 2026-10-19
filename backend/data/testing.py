@@ -1,3 +1,5 @@
+# this file creates a temporary database for checks
+# it removes only the database it created when the check finishes
 """Disposable databases shared by the Week 1 validator and integration tests."""
 from contextlib import contextmanager
 from uuid import uuid4

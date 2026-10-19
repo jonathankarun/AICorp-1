@@ -1,3 +1,5 @@
+# this file makes the fictional PDF used in the week 2 demo
+# keeping the fixture predictable lets us check the expected source pages
 """Regenerate the deterministic fictional PDF (no City records)."""
 
 from pathlib import Path

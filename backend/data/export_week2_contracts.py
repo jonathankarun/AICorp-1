@@ -1,3 +1,5 @@
+# this file writes the week 2 schemas and API contract
+# regenerating them keeps the shared examples lined up with the code
 """Export version 2 input schemas and the local API's OpenAPI contract."""
 
 import json

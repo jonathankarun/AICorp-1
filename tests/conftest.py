@@ -1,3 +1,5 @@
+# this file sets up shared pytest options and imports
+# database checks only run when we pass --run-data
 import sys
 from pathlib import Path
 
