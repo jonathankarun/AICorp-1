@@ -1,0 +1,55 @@
+{
+  "owner": "Jonathan",
+  "week": 3,
+  "implementation_commit": "7974155b2e1d7cb092f959d40055a8514ae5c3d8",
+  "base_commit": "4e70071",
+  "checks": [
+    {
+      "command": ".venv/bin/python -m pytest --run-data -q --tb=short",
+      "result": "47 passed; before adding the final 3 Week 3 checks",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python -m pytest tests/test_week3.py --run-data -q --tb=short",
+      "result": "10 passed, including the 3 additional checks",
+      "exit_code": 0,
+      "output": "week3-tests.txt"
+    },
+    {
+      "command": ".venv/bin/python -m backend.data.week3_demo --output evidence/week-3/jonathan/demo.json",
+      "result": "8 checks passed",
+      "exit_code": 0,
+      "output": "demo.json"
+    },
+    {
+      "command": "npm run build --prefix apps/web",
+      "result": "TypeScript and Vite build passed",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python scripts/test_week2_browser.py",
+      "result": "2 passed",
+      "exit_code": 0,
+      "output": "browser-tests.txt"
+    },
+    {
+      "command": ".venv/bin/python -m backend.data.cli migrate",
+      "result": "003_week3.sql applied to existing local database",
+      "exit_code": 0
+    },
+    {
+      "command": "AST comparison against base HEAD for tracked Python files",
+      "result": "39 original files have unchanged executable syntax",
+      "exit_code": 0
+    }
+  ],
+  "passed": true,
+  "synthetic": true,
+  "artifacts_sha256": {
+    "demo.json": "c68e4a6b55842a345ea2f9ffbe4d2eab7492fff6747819b8a5d4905972434bdc",
+    "week3-tests.txt": "8623ed4453495d0eb38cd27fd62dda0da24ff46dedc4bbe1acb2ad2933f28f35",
+    "browser-tests.txt": "fb8e3e974ab5d32423c97eaa34c8299056cf62a8b60a2f5428cecb194339b369",
+    "README.md": "dc8b8b21f89fb513b45b37125594c09ef6aa486498624acb0dbaf47e00725d42",
+    "expected_outputs.md": "9b3b84ff5045a952aa1c09e5d3ef5674911f1defee8ca13227dd0017a33150c8"
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "synthetic": true,
+  "checks": [
+    {
+      "check": "two documents",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "check": "two specialties",
+      "expected": 2,
+      "actual": 2,
+      "passed": true
+    },
+    {
+      "check": "week 1 payment total stays unchanged",
+      "expected": "300.00",
+      "actual": "300.00",
+      "passed": true
+    },
+    {
+      "check": "changed bytes create a new version",
+      "expected": true,
+      "actual": true,
+      "passed": true
+    },
+    {
+      "check": "old citation still resolves version 1",
+      "expected": "940be761-491d-546b-bfe1-af5ccb176054",
+      "actual": "940be761-491d-546b-bfe1-af5ccb176054",
+      "passed": true
+    },
+    {
+      "check": "old citation text stays unchanged",
+      "expected": "AI Corps | Fictional fixture\nProject scope and timeline\nThe fictional department requests a preliminary improvement plan.\nThe implementation timeline is six weeks.\nStaff interview sessions document the current intake process.\nThe project concerns permit processing and service delays.\nWeek 2 test corpus | Page 1 of 2 | Not a City record",
+      "actual": "AI Corps | Fictional fixture\nProject scope and timeline\nThe fictional department requests a preliminary improvement plan.\nThe implementation timeline is six weeks.\nStaff interview sessions document the current intake process.\nThe project concerns permit processing and service delays.\nWeek 2 test corpus | Page 1 of 2 | Not a City record",
+      "passed": true
+    },
+    {
+      "check": "missing citation rejected",
+      "expected": "source_not_ready_or_not_allowed",
+      "actual": "source_not_ready_or_not_allowed",
+      "passed": true
+    },
+    {
+      "check": "failed save leaves no extra report",
+      "expected": 1,
+      "actual": 1,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "comparable": {
+    "engagement_id": "30000000-0000-4000-8000-000000000001",
+    "source_key": "engagement-fixture-001",
+    "department_id": "10000000-0000-4000-8000-000000000001",
+    "vendor_id": "20000000-0000-4000-8000-000000000001",
+    "title": "Fictional six-week intake improvement plan",
+    "source_uri": "fixture://jonathan-week1/engagement/001",
+    "vendor_name": "Fictional Process Consulting LLC",
+    "match_reasons": [
+      "specialty: permit"
+    ],
+    "documents": [
+      {
+        "document_version_id": "940be761-491d-546b-bfe1-af5ccb176054",
+        "document_id": "c5a077e5-a535-4ac1-a564-134dbb9de252",
+        "version": 1,
+        "engagement_id": null,
+        "title": "Fictional Process Improvement Engagement",
+        "issuer": "AI Corps fixture generator",
+        "published_on": "2026-10-05",
+        "source_uri": "fixture://week2/engagement.pdf",
+        "content_hash": "2cbf04f6d9293c51c216a343a231ab44f482f0db67b5b75f7eba68fd96ae10ca",
+        "extraction_version": "pypdf-page-paragraph-v1",
+        "access_status": "public",
+        "external_model_allowed": true
+      },
+      {
+        "document_version_id": "cd580673-6a65-577a-b95a-982f6fe336a0",
+        "document_id": "cf63c983-799c-42c5-80fc-1803789ee2bf",
+        "version": 1,
+        "engagement_id": null,
+        "title": "Second fictional document",
+        "issuer": "AI Corps fixture generator",
+        "published_on": "2026-10-05",
+        "source_uri": "fixture://week2/engagement.pdf",
+        "content_hash": "2cbf04f6d9293c51c216a343a231ab44f482f0db67b5b75f7eba68fd96ae10ca",
+        "extraction_version": "pypdf-page-paragraph-v1",
+        "access_status": "public",
+        "external_model_allowed": true
+      }
+    ],
+    "facts": [
+      {
+        "fact_id": "17b76a47-6564-4691-96dc-e3df3288b438",
+        "engagement_id": "30000000-0000-4000-8000-000000000001",
+        "kind": "outcome",
+        "value": null,
+        "unknown_reason": "The fixture has no measured outcome",
+        "evidence_chunk_id": "ef85f04b-2db0-5c06-8ee2-27d247afc5d4",
+        "related_engagement_id": null,
+        "amount": null,
+        "currency": null,
+        "document_version_id": "940be761-491d-546b-bfe1-af5ccb176054",
+        "page_number": 1
+      },
+      {
+        "fact_id": "7d85f787-4db3-459c-b545-ccc9c0d5d742",
+        "engagement_id": "30000000-0000-4000-8000-000000000001",
+        "kind": "specialty",
+        "value": "process improvement",
+        "unknown_reason": null,
+        "evidence_chunk_id": "ef85f04b-2db0-5c06-8ee2-27d247afc5d4",
+        "related_engagement_id": null,
+        "amount": null,
+        "currency": null,
+        "document_version_id": "940be761-491d-546b-bfe1-af5ccb176054",
+        "page_number": 1
+      },
+      {
+        "fact_id": "b30a6f72-1aef-4f85-9008-ab1032856486",
+        "engagement_id": "30000000-0000-4000-8000-000000000001",
+        "kind": "specialty",
+        "value": "permit processing",
+        "unknown_reason": null,
+        "evidence_chunk_id": "ef85f04b-2db0-5c06-8ee2-27d247afc5d4",
+        "related_engagement_id": null,
+        "amount": null,
+        "currency": null,
+        "document_version_id": "940be761-491d-546b-bfe1-af5ccb176054",
+        "page_number": 1
+      }
+    ],
+    "payments": [
+      {
+        "currency": "USD",
+        "transaction_count": 2,
+        "amount": "300.00"
+      }
+    ],
+    "contract_values": []
+  },
+  "source_versions": {
+    "original": "940be761-491d-546b-bfe1-af5ccb176054",
+    "newer": "38eb5e94-733e-5580-a2d8-782b89e3fdf2"
+  },
+  "generated_at": "2026-10-19T06:14:47.806512+00:00",
+  "source_sha256": "0e69d7127ff9bad7d73362b23793a33aa8663ee20a784df3298cbd7bc3c40750",
+  "code_commit": "4e700717049ba11d3f5b78d18ed90914e06dc57f"
+}

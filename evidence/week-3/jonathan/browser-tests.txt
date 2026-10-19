@@ -1,0 +1,16 @@
+
+> aicorp-week2-web@0.2.0 test
+> playwright test
+
+[WebServer] INFO:     Started server process [8432]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+
+Running 2 tests using 1 worker
+
+[WebServer] EOF marker not found
+  ✓  1 tests/workspace.spec.ts:6:1 › real upload, saved selection, reload, source search, and failure preserves form (13.1s)
+  ✓  2 tests/workspace.spec.ts:59:1 › API outage is visible and form remains intact (7.0s)
+
+  2 passed (1.0m)
