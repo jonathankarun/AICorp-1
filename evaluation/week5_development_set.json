@@ -1,0 +1,536 @@
+{
+  "_simple_explanation": "This file contains the fixed Week 5 assignment, evidence, candidate runs, rates, and quality gate used by the testbench.",
+  "corpus_version": "week5-fixture-corpus-v1",
+  "prompt_version": "v3-safety",
+  "retrieval_version": "week4-fixture-context-v1",
+  "rate_schedule_label": "fixture-provider-rates-2026-10-25",
+  "team_allowance_usd": "0.100000",
+  "quality_gate": {
+    "minimum_average_score": 90.0,
+    "max_critical_unsupported_claims": 0,
+    "minimum_required_section_coverage_pct": 100.0,
+    "require_all_runs_success": true
+  },
+  "assignment": {
+    "assignment_id": "week5-dev-assignment-001",
+    "problem": "Improve the fictional intake workflow using approved evidence.",
+    "intended_result": "Recommend a source-backed improvement approach with implementation steps and risks.",
+    "department_id": "dept-fixture-001",
+    "required_sections": [
+      "findings",
+      "alternatives",
+      "recommendation",
+      "implementation_steps",
+      "risks"
+    ],
+    "constraints": [
+      "Use only the supplied synthetic evidence."
+    ],
+    "selected_document_version_ids": []
+  },
+  "evidence": [
+    {
+      "chunk_id": "w5-intake-1",
+      "document_version_id": "w5-doc-intake",
+      "title": "Fictional Intake Baseline",
+      "locator": "page 1",
+      "text": "The fictional intake workflow averages 9 business days of cycle time. Staff report duplicate data entry and inconsistent routing.",
+      "readable": true,
+      "external_model_allowed": true,
+      "fact_key": null,
+      "fact_value": null
+    },
+    {
+      "chunk_id": "w5-intake-1-duplicate",
+      "document_version_id": "w5-doc-intake-copy",
+      "title": "Fictional Intake Baseline Duplicate",
+      "locator": "page 1",
+      "text": "The fictional intake workflow averages 9 business days of cycle time. Staff report duplicate data entry and inconsistent routing.",
+      "readable": true,
+      "external_model_allowed": true,
+      "fact_key": null,
+      "fact_value": null
+    },
+    {
+      "chunk_id": "w5-pilot-1",
+      "document_version_id": "w5-doc-pilot",
+      "title": "Fictional Intake Pilot",
+      "locator": "page 2",
+      "text": "A prior fictional pilot used a standardized checklist and triage step. The pilot ran for 6 weeks. Success measures included cycle time, rework count, and routing accuracy.",
+      "readable": true,
+      "external_model_allowed": true,
+      "fact_key": null,
+      "fact_value": null
+    },
+    {
+      "chunk_id": "w5-cost-1",
+      "document_version_id": "w5-doc-cost",
+      "title": "Fictional Historical Cost",
+      "locator": "record 1",
+      "text": "A fictional comparable engagement recorded 12000 USD in actual payments during FY2026.",
+      "readable": true,
+      "external_model_allowed": true,
+      "fact_key": null,
+      "fact_value": null
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "low_cost_candidate",
+      "model_id": "fixture-low-cost-v1",
+      "max_output_tokens": 700,
+      "prompt_overhead_tokens": 180,
+      "embedding_allowance_usd": "0",
+      "rate": {
+        "rate_date": "2026-10-25",
+        "rate_unit_tokens": 1000,
+        "input_rate_usd": "0.0020",
+        "output_rate_usd": "0.0080"
+      }
+    },
+    {
+      "candidate_id": "stronger_candidate",
+      "model_id": "fixture-stronger-v1",
+      "max_output_tokens": 800,
+      "prompt_overhead_tokens": 180,
+      "embedding_allowance_usd": "0",
+      "rate": {
+        "rate_date": "2026-10-25",
+        "rate_unit_tokens": 1000,
+        "input_rate_usd": "0.0080",
+        "output_rate_usd": "0.0300"
+      }
+    }
+  ],
+  "runs": {
+    "low_cost_candidate": [
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-low-r1",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the prior pilot approach as the initial improvement option.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "risks",
+              "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+              "citation_ids": [
+                "c-intake",
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 240,
+        "fixture_provider_elapsed_ms": 420,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 3.5,
+          "feasibility": 4.0
+        }
+      },
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-low-r2",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the prior pilot approach as the initial improvement option.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "risks",
+              "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+              "citation_ids": [
+                "c-intake",
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 226,
+        "fixture_provider_elapsed_ms": 390,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 3.0,
+          "feasibility": 3.5
+        }
+      },
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-low-r3",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the prior pilot approach as the initial improvement option.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 205,
+        "fixture_provider_elapsed_ms": 405,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 3.0,
+          "feasibility": 3.0
+        }
+      }
+    ],
+    "stronger_candidate": [
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-strong-r1",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the checklist and triage step because both are present in the prior pilot evidence.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "risks",
+              "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+              "citation_ids": [
+                "c-intake",
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 300,
+        "fixture_provider_elapsed_ms": 760,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 4.5,
+          "feasibility": 4.5
+        }
+      },
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-strong-r2",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the checklist and triage step because both are present in the prior pilot evidence.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "risks",
+              "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+              "citation_ids": [
+                "c-intake",
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 315,
+        "fixture_provider_elapsed_ms": 790,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 4.5,
+          "feasibility": 4.0
+        }
+      },
+      {
+        "provider_behavior": "success",
+        "response": {
+          "report_id": "w5-strong-r3",
+          "assignment_id": "overwritten-by-engine",
+          "status": "draft",
+          "sections": [
+            {
+              "name": "findings",
+              "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+              "citation_ids": [
+                "c-intake"
+              ]
+            },
+            {
+              "name": "alternatives",
+              "content": "Alternative one is a standardized checklist. Alternative two combines the checklist with a triage step.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "recommendation",
+              "content": "Use the checklist and triage step because both are present in the prior pilot evidence.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "implementation_steps",
+              "content": "Run a 6 week pilot using the checklist and triage step, then measure cycle time, rework count, and routing accuracy.",
+              "citation_ids": [
+                "c-pilot"
+              ]
+            },
+            {
+              "name": "risks",
+              "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+              "citation_ids": [
+                "c-intake",
+                "c-pilot"
+              ]
+            }
+          ],
+          "citations": [
+            {
+              "citation_id": "c-intake",
+              "evidence_chunk_id": "w5-intake-1"
+            },
+            {
+              "citation_id": "c-pilot",
+              "evidence_chunk_id": "w5-pilot-1"
+            }
+          ],
+          "assumptions": [
+            "Synthetic development fixture only."
+          ],
+          "missing_information": [
+            "Real staffing capacity and City reviewer feedback are not present in this fixture."
+          ],
+          "expert_review_needed": [
+            "Operational feasibility should be reviewed by a knowledgeable reviewer."
+          ]
+        },
+        "fixture_output_tokens": 295,
+        "fixture_provider_elapsed_ms": 745,
+        "reviewer": {
+          "reviewer_type": "peer",
+          "usefulness": 4.0,
+          "feasibility": 4.5
+        }
+      }
+    ]
+  },
+  "_technical_explanation": "The manifest fixes corpus/prompt/retrieval versions, identical inputs, per-candidate fixture runs, declared rate units, peer-review scores, and quality gates so comparison results are repeatable and auditable."
+}

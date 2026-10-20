@@ -1,0 +1,17 @@
+{
+  "status": "frozen",
+  "selected_candidate_id": "stronger_candidate",
+  "model_id": "fixture-stronger-v1",
+  "prompt_version": "v3-safety",
+  "retrieval_version": "week4-fixture-context-v1",
+  "corpus_version": "week5-fixture-corpus-v1",
+  "deduplicate_context": true,
+  "quality_gate": {
+    "minimum_average_score": 90.0,
+    "max_critical_unsupported_claims": 0,
+    "minimum_required_section_coverage_pct": 100.0,
+    "require_all_runs_success": true
+  },
+  "rate_schedule_label": "fixture-provider-rates-2026-10-25",
+  "note": "Fixture comparison only; replace fixture usage/rates with authorized provider-reported values before making a live-provider claim."
+}
