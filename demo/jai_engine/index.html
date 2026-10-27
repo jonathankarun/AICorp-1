@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Jai — LLM Consulting Engine Final Demo</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <div><strong>AI Corps</strong><span>Jai · LLM Consulting Engine</span></div>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-top"><span>Validation progress</span><strong id="progress-label">0 / 13</strong></div>
+        <div class="progress"><div id="progress-bar"></div></div>
+      </div>
+
+      <nav id="step-list" aria-label="Validation checkpoints"></nav>
+
+      <div class="rail-actions">
+        <button id="run-all" class="secondary">Run all checks</button>
+        <button id="reset" class="ghost">Reset results</button>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">FINAL SUBSYSTEM ACCEPTANCE · FALL 2026</p>
+          <h1>LLM Consulting Engine</h1>
+          <p id="subtitle">Execution plan + validation plan + end-to-end walkthrough</p>
+        </div>
+        <div class="header-actions">
+          <span class="status-pill"><span class="dot"></span> Local deterministic demo</span>
+          <button id="run-final" class="primary-large">Run final fake assignment</button>
+        </div>
+      </header>
+
+      <section class="summary-row">
+        <div><span>Checkpoint</span><strong id="case-id">—</strong><small id="case-title">Select a checkpoint</small></div>
+        <div><span>Phase</span><strong id="phase-short">—</strong><small id="owner">—</small></div>
+        <div><span>Result</span><strong id="live-status">NOT RUN</strong><small id="headline">Run the checkpoint to see evidence.</small></div>
+      </section>
+
+      <section class="panel checkpoint-card">
+        <div class="panel-head">
+          <div>
+            <span class="kicker">VALIDATION CHECK</span>
+            <h2 id="success">Choose a checkpoint from the left.</h2>
+          </div>
+          <button id="run-step" disabled>Run checkpoint</button>
+        </div>
+
+        <div class="explain-grid">
+          <article>
+            <span class="mini-label">Method</span>
+            <p id="methodology">—</p>
+          </article>
+          <article>
+            <span class="mini-label">Why it matters</span>
+            <p id="explanation">—</p>
+          </article>
+          <article>
+            <span class="mini-label">How it is implemented</span>
+            <p id="technical">—</p>
+          </article>
+        </div>
+
+        <div id="reviewer-panel" class="reviewer hidden">
+          <div>
+            <strong>Live human-review gate</strong>
+            <p>Any dimension below 4.0 fails this checkpoint. Change a value and rerun to demonstrate the gate live.</p>
+          </div>
+          <div class="score-grid">
+            <label>Accuracy <input id="score-accuracy" type="number" min="0" max="5" step="0.5" value="4.5"></label>
+            <label>Completeness <input id="score-completeness" type="number" min="0" max="5" step="0.5" value="4.5"></label>
+            <label>Usefulness <input id="score-usefulness" type="number" min="0" max="5" step="0.5" value="4.5"></label>
+            <label>Feasibility <input id="score-feasibility" type="number" min="0" max="5" step="0.5" value="4.5"></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel metrics-panel">
+        <div class="panel-head compact">
+          <div><span class="kicker">MEASURABLE EVIDENCE</span><h2>Validation metrics</h2></div>
+          <button id="next-step" class="secondary" disabled>Next checkpoint →</button>
+        </div>
+        <div id="metrics" class="metrics-empty">No metrics yet.</div>
+      </section>
+
+      <section class="raw-grid">
+        <details class="panel raw-card">
+          <summary>View test input</summary>
+          <pre id="input-json">Run a checkpoint to populate this panel.</pre>
+        </details>
+        <details class="panel raw-card">
+          <summary>View engine output</summary>
+          <pre id="output-json">The engine result will appear here.</pre>
+        </details>
+      </section>
+
+      <section id="final-section" class="final-section">
+        <div class="final-heading">
+          <div>
+            <span class="kicker">FINAL APPLICATION HANDOFF</span>
+            <h2>What Yasha's subsystem can display</h2>
+            <p>This run uses the real shared Report contract and turns it into the City-facing information the application layer can render.</p>
+          </div>
+          <span id="final-status" class="final-status waiting">Not run</span>
+        </div>
+
+        <div id="final-empty" class="final-empty">
+          Click <strong>Run final fake assignment</strong> above to execute one complete synthetic assignment through the engine.
+        </div>
+
+        <div id="final-output" class="hidden">
+          <div class="handoff-meta" id="handoff-meta"></div>
+          <div class="report-layout">
+            <article class="report-paper">
+              <div class="report-header">
+                <div>
+                  <span id="report-status" class="report-status">Draft</span>
+                  <h2 id="report-title">AI Consulting Recommendation</h2>
+                  <p id="report-problem"></p>
+                </div>
+              </div>
+              <div id="report-sections"></div>
+              <div class="report-notes">
+                <div><h3>Assumptions</h3><ul id="report-assumptions"></ul></div>
+                <div><h3>Missing information</h3><ul id="report-missing"></ul></div>
+                <div><h3>Expert review needed</h3><ul id="report-review"></ul></div>
+              </div>
+            </article>
+
+            <aside class="report-side">
+              <div class="side-card">
+                <h3>Quality summary</h3>
+                <div id="quality-summary" class="quality-grid"></div>
+              </div>
+              <div class="side-card">
+                <h3>Sources shown to the user</h3>
+                <div id="source-cards"></div>
+              </div>
+              <details class="side-card payload-card">
+                <summary>Exact application handoff JSON</summary>
+                <pre id="handoff-json"></pre>
+              </details>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <strong>Demo boundary:</strong> controlled synthetic evidence and deterministic provider fixtures are used for acceptance. The report structure and handoff shape are real project contracts; live paid-model performance is not claimed here.
+      </footer>
+    </main>
+  </div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

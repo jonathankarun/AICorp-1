@@ -1,0 +1,27 @@
+JAI — LLM CONSULTING ENGINE FINAL ACCEPTANCE
+======================================================================================
+Required validation cases: 12/12
+All demo cases (including longevity bonus): 13/13
+Final application handoff: succeeded
+
+ID         PASS?   CHECK                                          METRIC
+----------------------------------------------------------------------------------------------------
+VP-1.3     PASS    LLM Engine Scope Validation                    model_calls_prevented=1
+VP-2.4     PASS    Retrieval Relevance                            answerable_top5_relevance_pct=100.0, forbidden_context_leaks=0
+VP-3.1     PASS    Structured Report Generation                   required_sections_returned=5/5, provider_calls=1
+VP-3.2     PASS    Citation Traceability                          valid_citations=2/2, fake_citation_rejected=True
+VP-4.3     PASS    Prompt Injection / Unsupported Evidence        injection_flags=1, permission_change=False
+VP-4.4     PASS    Model Failure Recovery                         timeout_attempts=2, timeout_provider_calls=2
+VP-5.4     PASS    LLM Evidence Quality                           factual_support_pct=100.0, critical_unsupported_claims=0
+VP-5.5     PASS    Report Usefulness                              dimensions_at_or_above_target=4/4
+VP-5.6     PASS    API Cost Control                               blocked_provider_calls=0, blocked_actual_cost_usd=0.000000
+VP-6.2     PASS    Release Compatibility — Engine Portion         same_input_across_candidates=True, equal_runs=True
+VP-7.1     PASS    Full System Demonstration — Engine Portion     pipeline_stages_passed=4/4, final_result=application-ready draft report
+VP-7.2     PASS    Controlled System Failure Demo — Engine Portion new_report_created_on_failure=False
+EXTRA-L1   PASS    Automatic Model Longevity                      lifecycle_checks_passed=7/7, proposed_changes=2
+
+FINAL STATUS: JAI ENGINE ACCEPTANCE COMPLETE
+
+Note: this final acceptance uses controlled synthetic fixtures. Shared
+database/browser integration and any live-provider benchmark remain separate
+full-team deployment evidence rather than being falsely claimed here.

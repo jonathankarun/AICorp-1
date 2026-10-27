@@ -1,0 +1,283 @@
+{
+  "status": "succeeded",
+  "run": {
+    "run_id": "jai-final-ui-run-001",
+    "assignment_id": "jai-final-demo-001",
+    "status": "succeeded",
+    "mode": "synthetic_demo",
+    "provider_calls": 1
+  },
+  "assignment": {
+    "problem": "Improve a fictional city intake workflow using only approved evidence.",
+    "intended_result": "Recommend a source-backed improvement approach with alternatives, implementation steps, risks, and measurable outcomes.",
+    "audience": "City department leadership",
+    "constraints": [
+      "Use only supplied synthetic evidence.",
+      "Do not treat historical cost as a current quote."
+    ]
+  },
+  "report_contract": {
+    "report_id": "jai-final-report-001",
+    "assignment_id": "jai-final-demo-001",
+    "status": "draft",
+    "sections": [
+      {
+        "name": "findings",
+        "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+        "citation_ids": [
+          "cite-intake"
+        ]
+      },
+      {
+        "name": "alternatives",
+        "content": "One alternative is a standardized checklist. A second combines the checklist with a triage step.",
+        "citation_ids": [
+          "cite-pilot"
+        ]
+      },
+      {
+        "name": "recommendation",
+        "content": "Pilot the standardized checklist with a triage step because both are supported by the prior pilot evidence.",
+        "citation_ids": [
+          "cite-pilot"
+        ]
+      },
+      {
+        "name": "implementation_steps",
+        "content": "Run a 6 week pilot, measure cycle time, rework count, and routing accuracy, then review the results before wider adoption.",
+        "citation_ids": [
+          "cite-pilot"
+        ]
+      },
+      {
+        "name": "risks",
+        "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+        "citation_ids": [
+          "cite-intake",
+          "cite-pilot"
+        ]
+      }
+    ],
+    "citations": [
+      {
+        "citation_id": "cite-intake",
+        "evidence_chunk_id": "final-intake-1"
+      },
+      {
+        "citation_id": "cite-pilot",
+        "evidence_chunk_id": "final-pilot-1"
+      }
+    ],
+    "assumptions": [
+      "Synthetic acceptance fixture only."
+    ],
+    "missing_information": [
+      "Real staffing capacity and current operating budget."
+    ],
+    "expert_review_needed": [
+      "Operational feasibility should be reviewed by City staff."
+    ]
+  },
+  "stored_report_view": {
+    "content": {
+      "report_id": "jai-final-report-001",
+      "assignment_id": "jai-final-demo-001",
+      "status": "draft",
+      "sections": [
+        {
+          "name": "findings",
+          "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+          "citation_ids": [
+            "cite-intake"
+          ]
+        },
+        {
+          "name": "alternatives",
+          "content": "One alternative is a standardized checklist. A second combines the checklist with a triage step.",
+          "citation_ids": [
+            "cite-pilot"
+          ]
+        },
+        {
+          "name": "recommendation",
+          "content": "Pilot the standardized checklist with a triage step because both are supported by the prior pilot evidence.",
+          "citation_ids": [
+            "cite-pilot"
+          ]
+        },
+        {
+          "name": "implementation_steps",
+          "content": "Run a 6 week pilot, measure cycle time, rework count, and routing accuracy, then review the results before wider adoption.",
+          "citation_ids": [
+            "cite-pilot"
+          ]
+        },
+        {
+          "name": "risks",
+          "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+          "citation_ids": [
+            "cite-intake",
+            "cite-pilot"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "citation_id": "cite-intake",
+          "evidence_chunk_id": "final-intake-1"
+        },
+        {
+          "citation_id": "cite-pilot",
+          "evidence_chunk_id": "final-pilot-1"
+        }
+      ],
+      "assumptions": [
+        "Synthetic acceptance fixture only."
+      ],
+      "missing_information": [
+        "Real staffing capacity and current operating budget."
+      ],
+      "expert_review_needed": [
+        "Operational feasibility should be reviewed by City staff."
+      ]
+    },
+    "citations": [
+      {
+        "citation_id": "cite-intake",
+        "evidence_chunk_id": "final-intake-1",
+        "source": {
+          "document_version_id": "final-doc-intake",
+          "title": "Fictional Intake Baseline",
+          "locator": "page 1",
+          "text": "The fictional intake workflow averages 9 business days of cycle time. Staff report duplicate data entry and inconsistent routing."
+        }
+      },
+      {
+        "citation_id": "cite-pilot",
+        "evidence_chunk_id": "final-pilot-1",
+        "source": {
+          "document_version_id": "final-doc-pilot",
+          "title": "Fictional Intake Pilot",
+          "locator": "page 2",
+          "text": "A prior fictional pilot used a standardized checklist and triage step. The pilot ran for 6 weeks. Success measures included cycle time, rework count, and routing accuracy."
+        }
+      }
+    ]
+  },
+  "quality": {
+    "result_type": "report",
+    "total_score": 98.0,
+    "required_section_coverage_pct": 100.0,
+    "factual_support_pct": 100.0,
+    "citation_quality_pct": 100.0,
+    "completeness_pct": 100.0,
+    "usefulness_score_1_to_5": 4.5,
+    "feasibility_score_1_to_5": 4.5,
+    "reviewer_type": "peer",
+    "critical_unsupported_claims": 0,
+    "failure_code": null
+  },
+  "application_display": {
+    "title": "AI Consulting Recommendation",
+    "status_label": "Draft \u2014 Human Review Required",
+    "problem": "Improve a fictional city intake workflow using only approved evidence.",
+    "sections": [
+      {
+        "name": "findings",
+        "label": "Findings",
+        "content": "The intake workflow averages 9 business days of cycle time and has duplicate data entry and inconsistent routing.",
+        "sources": [
+          {
+            "citation_id": "cite-intake",
+            "title": "Fictional Intake Baseline",
+            "locator": "page 1"
+          }
+        ]
+      },
+      {
+        "name": "alternatives",
+        "label": "Alternatives",
+        "content": "One alternative is a standardized checklist. A second combines the checklist with a triage step.",
+        "sources": [
+          {
+            "citation_id": "cite-pilot",
+            "title": "Fictional Intake Pilot",
+            "locator": "page 2"
+          }
+        ]
+      },
+      {
+        "name": "recommendation",
+        "label": "Recommendation",
+        "content": "Pilot the standardized checklist with a triage step because both are supported by the prior pilot evidence.",
+        "sources": [
+          {
+            "citation_id": "cite-pilot",
+            "title": "Fictional Intake Pilot",
+            "locator": "page 2"
+          }
+        ]
+      },
+      {
+        "name": "implementation_steps",
+        "label": "Implementation Steps",
+        "content": "Run a 6 week pilot, measure cycle time, rework count, and routing accuracy, then review the results before wider adoption.",
+        "sources": [
+          {
+            "citation_id": "cite-pilot",
+            "title": "Fictional Intake Pilot",
+            "locator": "page 2"
+          }
+        ]
+      },
+      {
+        "name": "risks",
+        "label": "Risks",
+        "content": "Duplicate data entry and inconsistent routing may continue if the checklist and triage step are not applied consistently.",
+        "sources": [
+          {
+            "citation_id": "cite-intake",
+            "title": "Fictional Intake Baseline",
+            "locator": "page 1"
+          },
+          {
+            "citation_id": "cite-pilot",
+            "title": "Fictional Intake Pilot",
+            "locator": "page 2"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "citation_id": "cite-intake",
+        "document_version_id": "final-doc-intake",
+        "title": "Fictional Intake Baseline",
+        "locator": "page 1",
+        "text": "The fictional intake workflow averages 9 business days of cycle time. Staff report duplicate data entry and inconsistent routing."
+      },
+      {
+        "citation_id": "cite-pilot",
+        "document_version_id": "final-doc-pilot",
+        "title": "Fictional Intake Pilot",
+        "locator": "page 2",
+        "text": "A prior fictional pilot used a standardized checklist and triage step. The pilot ran for 6 weeks. Success measures included cycle time, rework count, and routing accuracy."
+      }
+    ],
+    "assumptions": [
+      "Synthetic acceptance fixture only."
+    ],
+    "missing_information": [
+      "Real staffing capacity and current operating budget."
+    ],
+    "expert_review_needed": [
+      "Operational feasibility should be reviewed by City staff."
+    ],
+    "quality_summary": {
+      "total_score": 98.0,
+      "factual_support_pct": 100.0,
+      "citation_quality_pct": 100.0,
+      "section_coverage_pct": 100.0
+    }
+  }
+}
