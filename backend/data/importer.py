@@ -156,8 +156,13 @@ def import_csv(conn, raw: bytes, manifest: dict):
                 error = "Duplicate/ambiguous transaction identity within file; review both rows"
             if not error:
                 existing = conn.execute(
-                    "SELECT * FROM payments WHERE source_key=%s", (key,)
+                    "SELECT * FROM payments WHERE source_key=%s FOR UPDATE", (key,)
                 ).fetchone()
+                # a repeated export shouldnt undo a human-reviewed classification
+                # the unchanged raw CSV is still saved in source_imports and import_rows
+                if existing and conn.execute("SELECT 1 FROM data_audit WHERE action='payment_classification' AND resource_id=%s LIMIT 1", (existing['payment_id'],)).fetchone():
+                    record['classification'] = existing['classification']
+                    record['classification_reason'] = existing['classification_reason']
                 old = (
                     {
                         k: str(existing[k]) if existing[k] is not None else None

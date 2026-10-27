@@ -10,7 +10,7 @@ from uuid import UUID
 import psycopg
 from fastapi import BackgroundTasks, Depends, FastAPI, File, Form, Header, UploadFile
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 from starlette.middleware.trustedhost import TrustedHostMiddleware
@@ -27,6 +27,13 @@ from backend.data.workspace import (
 )
 from backend.data.ingestion import process_job, submit_pdf
 from backend.data.search import search
+from backend.data.history import comparable_work, add_fact, resolve_chunk
+from backend.data.week3_models import ComparableInput, FactInput
+from backend.data.reports import save_report, get_report
+from backend.engine.models import Report
+from backend.data.operations import (CorrectionInput, RestrictionInput, ReviewInput,
+    correct_payment, restrict_document, read_document, review_report)
+from backend.data.demo import demo_spending
 
 
 def create_app(
@@ -55,7 +62,7 @@ def create_app(
             )
         yield
 
-    app = FastAPI(title="AI Corps Week 2", version="2.0", lifespan=lifespan)
+    app = FastAPI(title="AI Corps Data Subsystem", version="4.0", lifespan=lifespan)
     app.add_middleware(
         TrustedHostMiddleware, allowed_hosts=["localhost", "127.0.0.1", "testserver"]
     )
@@ -166,6 +173,58 @@ def create_app(
     def find(data: SearchInput, ctx=Depends(identity)):
         with connection_factory() as conn:
             return search(conn, data, ctx)
+
+    @app.post("/api/v1/comparables")
+    def comparables(data: ComparableInput, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return comparable_work(conn, data, ctx)
+
+    @app.post("/api/v1/facts", status_code=201)
+    def fact(data: FactInput, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return {"fact_id": add_fact(conn, data, ctx)}
+
+    @app.get("/api/v1/chunks/{identifier}")
+    def chunk(identifier: UUID, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return resolve_chunk(conn, identifier, ctx)
+
+    @app.get("/api/v1/documents/{identifier}/pdf")
+    def pdf(identifier: UUID, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            _, content = read_document(conn, identifier, ctx)
+            return Response(content, media_type="application/pdf", headers={"Cache-Control": "no-store"})
+
+    @app.post("/api/v1/documents/{identifier}/access")
+    def access(identifier: UUID, data: RestrictionInput, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return restrict_document(conn, identifier, data, ctx)
+
+    @app.get("/api/v1/demo/spending")
+    def money(ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return demo_spending(conn, ctx)
+
+    @app.post("/api/v1/payments/{identifier}/classification")
+    def correction(identifier: UUID, data: CorrectionInput, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return correct_payment(conn, identifier, data, ctx)
+
+    @app.post("/api/v1/reports", status_code=201)
+    def report(data: Report, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            save_report(conn, data, ctx)
+            return get_report(conn, UUID(data.report_id), data.version, ctx)
+
+    @app.get("/api/v1/reports/{identifier}/{version}")
+    def read_report(identifier: UUID, version: int, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return get_report(conn, identifier, version, ctx)
+
+    @app.post("/api/v1/reports/{identifier}/{version}/reviews", status_code=201)
+    def review(identifier: UUID, version: int, data: ReviewInput, ctx=Depends(identity)):
+        with connection_factory() as conn:
+            return review_report(conn, identifier, version, data, ctx)
 
     frontend = ROOT / "apps/web/dist"
     if frontend.exists():

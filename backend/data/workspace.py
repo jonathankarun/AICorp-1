@@ -23,7 +23,7 @@ def list_documents(conn, context):
         """
         SELECT v.*, d.department_id FROM document_versions v
         JOIN documents d USING(document_id)
-        WHERE d.department_id = ANY(%s::uuid[]) AND v.access_status <> 'unknown'
+        WHERE d.department_id = ANY(%s::uuid[]) AND v.access_status <> 'unknown' AND NOT EXISTS (SELECT 1 FROM document_restrictions dr WHERE dr.document_id=v.document_id AND dr.blocked)
         AND EXISTS (SELECT 1 FROM ingestion_jobs j
           WHERE j.document_version_id=v.document_version_id AND j.status='ready')
         ORDER BY v.title, v.version DESC
@@ -36,7 +36,7 @@ def save_assignment(conn, data: AssignmentInput, context):
     require_department(context, data.department_id)
     # this checks every selected source before we save anything
     selected = set(data.selected_document_version_ids)
-    allowed = {d["document_version_id"] for d in list_documents(conn, context)}
+    allowed = {d["document_version_id"] for d in list_documents(conn, context) if d["department_id"] == data.department_id}
     if not selected <= allowed:
         raise DataError("source_not_ready_or_not_allowed", 422)
     identifier = uuid4()
@@ -78,7 +78,7 @@ def list_jobs(conn, context):
         """SELECT j.job_id,j.document_id,j.status,j.document_version_id,j.error_code,
       j.metadata->>'title' AS title, octet_length(j.raw_bytes) AS size_bytes
       FROM ingestion_jobs j JOIN documents d USING(document_id)
-      WHERE d.department_id=ANY(%s::uuid[]) ORDER BY j.created_at DESC""",
+      WHERE d.department_id=ANY(%s::uuid[]) AND NOT EXISTS (SELECT 1 FROM document_restrictions dr WHERE dr.document_id=d.document_id AND dr.blocked) ORDER BY j.created_at DESC""",
         (list(context.allowed_department_ids),),
     ).fetchall()
 
