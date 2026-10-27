@@ -1,0 +1,8 @@
+{
+  "_simple_explanation": "This file simulates the quality and safety benchmark result for each proposed replacement.",
+  "candidates": [
+    {"name": "consulting_primary", "model_id": "gpt-6-sol", "passed": true, "quality_score": 95.0},
+    {"name": "consulting_secondary", "model_id": "claude-sonnet-5-5", "passed": true, "quality_score": 93.0}
+  ],
+  "_technical_explanation": "Provider availability alone is not enough to promote a model. A matching benchmark result must also pass."
+}
