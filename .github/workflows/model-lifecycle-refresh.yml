@@ -1,0 +1,47 @@
+# Simple: This workflow checks model longevity every Monday and can use live provider catalogs when API secrets are configured.
+name: Model lifecycle refresh
+
+on:
+  schedule:
+    - cron: "30 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  model-lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pytest tests/test_model_registry.py -q
+      - run: python scripts/demo_model_longevity.py
+
+      - name: Live provider discovery when secrets exist
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        shell: bash
+        run: |
+          if [ -n "$OPENAI_API_KEY" ] || [ -n "$ANTHROPIC_API_KEY" ]; then
+            python scripts/check_model_lifecycle.py --live > evidence/model-lifecycle/live_check.json
+          else
+            echo "No provider API secrets configured; live discovery skipped."
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: model-lifecycle-evidence
+          path: evidence/model-lifecycle/
+
+# TECHNICAL EXPLANATION:
+# The schedule provides recurring lifecycle monitoring. It always runs the
+# deterministic regression suite, optionally performs live discovery with secrets,
+# and uploads evidence. Production promotion should remain a reviewed PR after
+# the live candidate passes the project benchmark.

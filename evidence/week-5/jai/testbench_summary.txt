@@ -1,0 +1,27 @@
+JAI WEEK 5 - ACCOMPLISHMENT TESTBENCH
+============================================================================================
+Cases passed: 8/8 (100.0%)
+
+ID         PASS?   WHAT THIS PROVES                                           ACTUAL RESULT
+------------------------------------------------------------------------------------------------------------------------
+W5-TB-01   PASS    Fair comparison uses the same assignment/evidence and equal run counts same_input=True, equal_runs=True
+W5-TB-02   PASS    Reports are scored with a repeatable quality rubric        low_cost=62.67, stronger=97.33
+W5-TB-03   PASS    The quality gate rejects the weaker fixture and accepts the stronger fixture low_cost_gate=FAIL, stronger_gate=PASS
+W5-TB-04   PASS    Cost and latency are recorded for every candidate          low=$0.002929 @ 405.0 ms; strong=$0.013660 @ 765.0 ms
+W5-TB-05   PASS    Budget protection blocks an unaffordable run before the provider is called result=budget_exceeded, provider_calls=0
+W5-TB-06   PASS    Measured context tuning removes duplicate evidence and saves estimated tokens removed=1, tokens_saved=96
+W5-TB-07   PASS    The lowest-cost configuration that passes the gate is frozen for Week 6 selected=stronger_candidate, status=frozen
+W5-TB-08   PASS    Key Week 4 safety cases still pass after Week 5 changes    4/4 passed
+
+CANDIDATE QUALITY / COST SUMMARY
+--------------------------------------------------------------------------------------------
+Candidate               Success   Avg Score   Avg Cost     Latency      Gate
+low_cost_candidate      2/3       62.67       $0.002929    405.0 ms     FAIL
+stronger_candidate      3/3       97.33       $0.013660    765.0 ms     PASS
+
+SELECTED/FROZEN CONFIGURATION: stronger_candidate
+BUDGET BLOCK TEST: budget_exceeded with 0 provider calls
+CONTEXT TUNING: removed 1 duplicate chunk(s), saved 96 estimated tokens
+WEEK 4 SAFETY REGRESSION: 4/4 passed
+
+LIMITATION: Candidate outputs, token counts, latency, and rates are controlled development fixtures, not live-provider measurements.

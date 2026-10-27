@@ -1,0 +1,56 @@
+{
+  "total_cases": 7,
+  "passed_cases": 7,
+  "failed_cases": 0,
+  "checks": [
+    {
+      "id": "ML-01",
+      "description": "Detect outdated OpenAI model",
+      "passed": true
+    },
+    {
+      "id": "ML-02",
+      "description": "Choose approved OpenAI replacement",
+      "passed": true
+    },
+    {
+      "id": "ML-03",
+      "description": "Detect outdated Anthropic model",
+      "passed": true
+    },
+    {
+      "id": "ML-04",
+      "description": "Choose approved Sonnet replacement",
+      "passed": true
+    },
+    {
+      "id": "ML-05",
+      "description": "Require passed benchmark before update",
+      "passed": true
+    },
+    {
+      "id": "ML-06",
+      "description": "Update registry without engine-code edits",
+      "passed": true
+    },
+    {
+      "id": "ML-07",
+      "description": "Keep old model in history for rollback",
+      "passed": true
+    }
+  ],
+  "changes": [
+    {
+      "name": "consulting_primary",
+      "old_model_id": "gpt-5.1",
+      "new_model_id": "gpt-6-sol",
+      "benchmark_passed": true
+    },
+    {
+      "name": "consulting_secondary",
+      "old_model_id": "claude-sonnet-fixture-old",
+      "new_model_id": "claude-sonnet-5-5",
+      "benchmark_passed": true
+    }
+  ]
+}

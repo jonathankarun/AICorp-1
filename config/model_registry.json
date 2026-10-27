@@ -1,0 +1,24 @@
+{
+  "_simple_explanation": "This file stores the AI models the system uses and which model families are allowed as replacements.",
+  "schema_version": 1,
+  "refresh_warning_days": 60,
+  "models": [
+    {
+      "name": "consulting_primary",
+      "provider": "openai",
+      "active_model_id": "gpt-5.1",
+      "allowed_model_prefixes": ["gpt-6-sol", "gpt-6.1-sol"],
+      "last_refreshed_on": null,
+      "history": []
+    },
+    {
+      "name": "consulting_secondary",
+      "provider": "anthropic",
+      "active_model_id": "claude-sonnet-fixture-old",
+      "allowed_model_prefixes": ["claude-sonnet"],
+      "last_refreshed_on": null,
+      "history": []
+    }
+  ],
+  "_technical_explanation": "Model IDs are configuration rather than hard-coded engine logic. Allowed prefixes prevent an unrelated newer model from being selected automatically."
+}

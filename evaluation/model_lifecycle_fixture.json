@@ -1,0 +1,16 @@
+{
+  "_simple_explanation": "This file simulates provider model lists so the longevity feature can be demonstrated without API keys.",
+  "providers": {
+    "openai": [
+      {"model_id": "gpt-5.1", "lifecycle": "deprecated", "created_at": "2025-11-13", "shutdown_date": "2027-04-01"},
+      {"model_id": "gpt-6-sol", "lifecycle": "active", "created_at": "2026-09-20", "shutdown_date": null},
+      {"model_id": "gpt-realtime-2.1", "lifecycle": "active", "created_at": "2026-10-01", "shutdown_date": null}
+    ],
+    "anthropic": [
+      {"model_id": "claude-sonnet-fixture-old", "lifecycle": "deprecated", "created_at": "2025-01-01", "shutdown_date": null},
+      {"model_id": "claude-sonnet-5-5", "lifecycle": "active", "created_at": "2026-09-01", "shutdown_date": null},
+      {"model_id": "claude-opus-fixture", "lifecycle": "active", "created_at": "2026-10-01", "shutdown_date": null}
+    ]
+  },
+  "_technical_explanation": "The fixture contains deprecated configured models, valid same-family replacements, and newer unrelated models so candidate-selection constraints can be tested."
+}

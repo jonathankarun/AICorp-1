@@ -1,0 +1,167 @@
+{
+  "week": 5,
+  "goal": "Measure quality/cost, enforce spending safety, tune a measured weakness, and freeze the selected configuration.",
+  "total_cases": 8,
+  "passed_cases": 8,
+  "failed_cases": 0,
+  "pass_rate_pct": 100.0,
+  "checks": [
+    {
+      "id": "W5-TB-01",
+      "accomplishment": "Fair comparison uses the same assignment/evidence and equal run counts",
+      "passed": true,
+      "actual": "same_input=True, equal_runs=True"
+    },
+    {
+      "id": "W5-TB-02",
+      "accomplishment": "Reports are scored with a repeatable quality rubric",
+      "passed": true,
+      "actual": "low_cost=62.67, stronger=97.33"
+    },
+    {
+      "id": "W5-TB-03",
+      "accomplishment": "The quality gate rejects the weaker fixture and accepts the stronger fixture",
+      "passed": true,
+      "actual": "low_cost_gate=FAIL, stronger_gate=PASS"
+    },
+    {
+      "id": "W5-TB-04",
+      "accomplishment": "Cost and latency are recorded for every candidate",
+      "passed": true,
+      "actual": "low=$0.002929 @ 405.0 ms; strong=$0.013660 @ 765.0 ms"
+    },
+    {
+      "id": "W5-TB-05",
+      "accomplishment": "Budget protection blocks an unaffordable run before the provider is called",
+      "passed": true,
+      "actual": "result=budget_exceeded, provider_calls=0"
+    },
+    {
+      "id": "W5-TB-06",
+      "accomplishment": "Measured context tuning removes duplicate evidence and saves estimated tokens",
+      "passed": true,
+      "actual": "removed=1, tokens_saved=96"
+    },
+    {
+      "id": "W5-TB-07",
+      "accomplishment": "The lowest-cost configuration that passes the gate is frozen for Week 6",
+      "passed": true,
+      "actual": "selected=stronger_candidate, status=frozen"
+    },
+    {
+      "id": "W5-TB-08",
+      "accomplishment": "Key Week 4 safety cases still pass after Week 5 changes",
+      "passed": true,
+      "actual": "4/4 passed"
+    }
+  ],
+  "candidate_summary": [
+    {
+      "candidate_id": "low_cost_candidate",
+      "model_id": "fixture-low-cost-v1",
+      "runs": 3,
+      "successes": 2,
+      "failures": 1,
+      "average_score": 62.67,
+      "minimum_required_section_coverage_pct": 0.0,
+      "critical_unsupported_claims": 1,
+      "average_cost_usd": "0.002929",
+      "total_cost_usd": "0.008788",
+      "average_latency_ms": 405.0,
+      "failure_codes": {
+        "missing_required_sections": 1
+      },
+      "meets_quality_gate": false
+    },
+    {
+      "candidate_id": "stronger_candidate",
+      "model_id": "fixture-stronger-v1",
+      "runs": 3,
+      "successes": 3,
+      "failures": 0,
+      "average_score": 97.33,
+      "minimum_required_section_coverage_pct": 100.0,
+      "critical_unsupported_claims": 0,
+      "average_cost_usd": "0.013660",
+      "total_cost_usd": "0.040980",
+      "average_latency_ms": 765.0,
+      "failure_codes": {},
+      "meets_quality_gate": true
+    }
+  ],
+  "selected_candidate": {
+    "candidate_id": "stronger_candidate",
+    "model_id": "fixture-stronger-v1",
+    "runs": 3,
+    "successes": 3,
+    "failures": 0,
+    "average_score": 97.33,
+    "minimum_required_section_coverage_pct": 100.0,
+    "critical_unsupported_claims": 0,
+    "average_cost_usd": "0.013660",
+    "total_cost_usd": "0.040980",
+    "average_latency_ms": 765.0,
+    "failure_codes": {},
+    "meets_quality_gate": true
+  },
+  "budget_block_demo": {
+    "code": "budget_exceeded",
+    "provider_calls": 0,
+    "actual_cost_usd": "0.000000"
+  },
+  "tuning": {
+    "deduplicate_context": true,
+    "duplicates_removed": [
+      "w5-intake-1-duplicate"
+    ],
+    "estimated_input_tokens_before": 666,
+    "estimated_input_tokens_after": 570,
+    "estimated_tokens_saved": 96
+  },
+  "week4_regressions": {
+    "available": true,
+    "passed": 4,
+    "total": 4,
+    "results": [
+      {
+        "id": "W4-02",
+        "passed": true,
+        "failures": []
+      },
+      {
+        "id": "W4-04",
+        "passed": true,
+        "failures": []
+      },
+      {
+        "id": "W4-09",
+        "passed": true,
+        "failures": []
+      },
+      {
+        "id": "W4-10",
+        "passed": true,
+        "failures": []
+      }
+    ]
+  },
+  "frozen_configuration": {
+    "status": "frozen",
+    "selected_candidate_id": "stronger_candidate",
+    "model_id": "fixture-stronger-v1",
+    "prompt_version": "v3-safety",
+    "retrieval_version": "week4-fixture-context-v1",
+    "corpus_version": "week5-fixture-corpus-v1",
+    "deduplicate_context": true,
+    "quality_gate": {
+      "minimum_average_score": 90.0,
+      "max_critical_unsupported_claims": 0,
+      "minimum_required_section_coverage_pct": 100.0,
+      "require_all_runs_success": true
+    },
+    "rate_schedule_label": "fixture-provider-rates-2026-10-25",
+    "note": "Fixture comparison only; replace fixture usage/rates with authorized provider-reported values before making a live-provider claim."
+  },
+  "baseline_estimated_tokens": 666,
+  "limitation": "Candidate outputs, token counts, latency, and rates are controlled development fixtures, not live-provider measurements."
+}
