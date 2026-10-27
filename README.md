@@ -1,10 +1,29 @@
 # AICorp-1
 
-City of College Station AI Corps capstone prototype. Current code includes a
-Week 3 comparable-work queries and report/citation storage, the Week 2
-React/FastAPI data workspace, PostgreSQL ingestion/search, and Jai's
-consulting engine with mock and real-data evidence adapters.
-All committed fixtures are fictional; no City data or live model key is required.
+City of College Station AI Corps capstone prototype. Jonathan's local data
+subsystem now includes a basic demo UI, PDF/CSV ingestion, indexed evidence search,
+comparable work, spending corrections with audit history, immutable reports,
+report reviews, document restrictions, and verified backup/restore.
+All bundled examples are fictional. No live model key is required.
+
+Start with [the complete data subsystem guide](docs/data-system/README.md) and
+[the simple file-by-file explanation](docs/data-system/changes.md).
+
+```bash
+python3 scripts/setup_local.py
+npm ci --prefix apps/web
+npm run build --prefix apps/web
+.venv/bin/python scripts/serve_week2.py
+```
+
+Open http://127.0.0.1:8000 and paste the printed token. To verify the release:
+
+```bash
+.venv/bin/python scripts/validate_data.py --disposable --browser
+```
+
+The weekly notes below describe earlier milestones. Current behavior and limits
+are documented in the complete data subsystem guide above.
 
 ## Jonathan's Week 3
 

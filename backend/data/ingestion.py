@@ -10,7 +10,7 @@ from psycopg.types.json import Jsonb
 from .week2_models import DocumentInput
 from .workspace import DataError, require_department
 
-EXTRACTION_VERSION = "pypdf-page-paragraph-v1"
+EXTRACTION_VERSION = "pypdf-page-paragraph-v1-chars1200"
 MAX_PAGES = 100
 CHUNK_CHARS = 1200
 MAX_TEXT_CHARS = 500_000

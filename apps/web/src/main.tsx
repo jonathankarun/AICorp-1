@@ -3,8 +3,11 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import { DataDemo } from "./DataDemo";
+import { SourcePreview } from "./SourcePreview";
 
 type Document = {
+  document_id: string;
   document_version_id: string;
   title: string;
   version: number;
@@ -17,7 +20,7 @@ type Job = {
   error_code: string | null;
   size_bytes: number;
 };
-type Chunk = { chunk_id: string; title: string; locator: string; text: string };
+type Chunk = { document_version_id: string; chunk_id: string; title: string; locator: string; text: string };
 type Assignment = {
   problem: string;
   department_id: string;
@@ -58,6 +61,7 @@ function App() {
     [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false),
     [uploading, setUploading] = useState(false);
+  const [updateDocument, setUpdateDocument] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [query, setQuery] = useState(""),
     [chunks, setChunks] = useState<Chunk[]>([]),
@@ -119,6 +123,7 @@ function App() {
       "metadata",
       JSON.stringify({
         department_id: form.department_id,
+        document_id: updateDocument || null,
         title: file.name,
         source_uri: "local-upload://" + encodeURIComponent(file.name),
         access_status: "public",
@@ -179,7 +184,7 @@ function App() {
             .length
             ? form.selected_document_version_ids
             : null,
-          for_external_model: true,
+          for_external_model: false,
         }),
       });
       setChunks(result.chunks);
@@ -193,8 +198,8 @@ function App() {
   return (
     <main>
       <header>
-        <p className="eyebrow">AI CORPS / WEEK 2</p>
-        <h1>Evidence workspace</h1>
+        <p className="eyebrow">AI CORPS / DATA SUBSYSTEM</p>
+        <h1>Data subsystem workspace</h1>
         <p>
           Save a consulting assignment and connect it to readable, traceable
           sources.
@@ -234,6 +239,8 @@ function App() {
         </p>
       )}
       {connected && (
+        <>
+          <DataDemo api={api} />
         <div className="layout">
           <section>
             <h2>1. Assignment</h2>
@@ -334,6 +341,12 @@ function App() {
           <aside>
             <h2>2. Document input</h2>
             <form onSubmit={upload}>
+              <label>Document version
+                <select value={updateDocument} onChange={e => setUpdateDocument(e.target.value)}>
+                  <option value="">New document</option>
+                  {docs.filter((d, i, all) => all.findIndex(other => other.document_id === d.document_id) === i).map(d => <option key={d.document_id} value={d.document_id}>Update {d.title}</option>)}
+                </select>
+              </label>
               <label>
                 PDF file
                 <input
@@ -392,7 +405,7 @@ function App() {
             </p>
             {searched && chunks.length === 0 && (
               <p role="status">
-                No eligible evidence found. Add an approved source or change the
+                No eligible evidence found. Add a readable source or change the
                 query.
               </p>
             )}
@@ -402,10 +415,12 @@ function App() {
                   {c.title} · {c.locator}
                 </h3>
                 <p>{c.text}</p>
+                <SourcePreview token={token} version={c.document_version_id} page={c.locator} />
               </article>
             ))}
           </aside>
         </div>
+        </>
       )}
     </main>
   );

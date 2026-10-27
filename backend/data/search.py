@@ -21,7 +21,7 @@ def search(conn, request: SearchInput, context):
             ts_rank_cd(to_tsvector('english',c.text),to_tsquery('english',%s)) AS score
           FROM chunks c JOIN document_versions v USING(document_version_id)
           JOIN documents d USING(document_id)
-          WHERE d.department_id=ANY(%s::uuid[]) AND v.access_status<>'unknown'
+          WHERE d.department_id=ANY(%s::uuid[]) AND v.access_status<>'unknown' AND NOT EXISTS (SELECT 1 FROM document_restrictions dr WHERE dr.document_id=v.document_id AND dr.blocked)
             AND (NOT %s OR v.external_model_allowed)
             AND (%s::uuid[] IS NULL OR v.document_version_id=ANY(%s::uuid[]))
             AND EXISTS(SELECT 1 FROM ingestion_jobs j WHERE j.document_version_id=v.document_version_id AND j.status='ready')

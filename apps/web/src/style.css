@@ -74,6 +74,7 @@ label {
   margin-bottom: 16px;
 }
 input,
+select,
 textarea {
   display: block;
   width: 100%;
@@ -183,3 +184,6 @@ aside form {
     font-size: 30px;
   }
 }
+
+/* just enough spacing to keep the demo separate from the upload form */
+.data-demo { border: 1px solid #cbd2cc; padding: 24px; margin-bottom: 32px; }

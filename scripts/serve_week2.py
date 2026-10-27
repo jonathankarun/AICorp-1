@@ -10,7 +10,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from backend.data.db import connect, migrate
-from backend.data.seed import seed
+from backend.data.demo import prepare_demo, DEPARTMENT
+from backend.data.models import AccessContext
+from uuid import UUID
 
 if __name__ == "__main__":
     if not (ROOT / "apps/web/dist/index.html").exists():
@@ -19,7 +21,7 @@ if __name__ == "__main__":
         )
     with connect() as conn:
         migrate(conn)
-        seed(conn)
+        prepare_demo(conn, AccessContext(actor_id=UUID("50000000-0000-4000-8000-000000000001"), allowed_department_ids=(DEPARTMENT,)))
     os.environ["AICORP_LOCAL_DEMO"] = "1"
     os.environ.setdefault("AICORP_DEMO_TOKEN", secrets.token_urlsafe(24))
     print("Local fixture demo: http://127.0.0.1:8000", flush=True)
