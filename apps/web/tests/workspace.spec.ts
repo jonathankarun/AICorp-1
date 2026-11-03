@@ -107,7 +107,6 @@ test('guided demo runs without uploads, supports stepping and replay, and shows 
   await page.getByLabel('Local demo token').fill(token);
   await page.getByRole('button', { name: 'Connect', exact: true }).click();
   await expect(page.getByText('Presenter notes:', { exact: false })).toHaveCount(0);
-  await page.getByLabel('Advance automatically every 6 seconds').uncheck();
   await page.getByRole('button', { name: 'Run demo', exact: true }).click();
   const demo = page.locator('.guided-demo');
   await expect(demo).toContainText('Processing status: ready');
@@ -125,9 +124,15 @@ test('guided demo runs without uploads, supports stepping and replay, and shows 
   await expect(demo).toContainText('not a human review');
   await page.getByRole('button', { name: 'Run demo again' }).click();
   await expect(demo).toContainText('Processing status: ready');
-  await page.getByLabel('Advance automatically every 6 seconds').check();
-  await expect(demo).toContainText('Assignment ID:', { timeout: 10000 });
-  await page.getByLabel('Advance automatically every 6 seconds').uncheck();
+  await page.clock.install();
+  await page.clock.fastForward(30000);
+  await expect(demo.getByRole('heading', { name: '1. Ingest the PDF', exact: true })).toBeVisible();
+  await expect(demo).toContainText('What happens:');
+  await expect(demo).toContainText('Why it matters:');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(demo).toContainText('Assignment ID:');
+  await page.getByRole('button', { name: 'Previous', exact: true }).click();
+  await expect(demo).toContainText('Processing status: ready');
   await page.screenshot({ path: '../../evidence/local/guided-demo.png', fullPage: true });
   await page.route('**/api/v1/demo/run', route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: { code: 'database_unavailable' } }) }));
   await page.getByRole('button', { name: 'Run demo again' }).click();

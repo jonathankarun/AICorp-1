@@ -25,8 +25,9 @@ Stop the server with Ctrl+C. PostgreSQL keeps its data in the Docker volume.
 ## The simple demo
 
 Click **Run demo** to execute the bundled PDF and CSV workflow automatically.
-The six stages display real backend results, advancing every six seconds. Turn
-off automatic advance to use Next/Previous or click any stage to pause there.
+The six stages display real backend results. Use Next/Previous or click a stage
+to navigate; steps never advance on their own. Each stage explains its processing
+and why the result matters.
 The run uses temporary records in a rollback-only transaction, so it can repeat
 without changing saved assignments, documents, payments, or reviews. The automatic
 correction is explicitly a scripted fictional decision, not a human review.

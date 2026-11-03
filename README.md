@@ -24,9 +24,9 @@ open -a "Google Chrome" http://localhost:8000
 ```
 
 Click **Run demo** at the top of the connected workspace. It runs a bundled PDF
-and CSV through the real backend, then automatically displays six result stages:
-ingest → store → search → original PDF → spending → audited correction. Uncheck
-**Advance automatically every 6 seconds** to use **Next** and **Previous** instead.
+and CSV through the real backend, then lets you explore six result stages:
+ingest → store → search → original PDF → spending → audited correction. Use
+**Next**, **Previous**, or a stage button to advance. There is no timed playback.
 No file uploads or form filling are needed. Each run uses a rollback-only database
 transaction: temporary records are discarded, and saved workspace data is unchanged.
 See [demo operation and scope](docs/data-system/demo-script.md).
