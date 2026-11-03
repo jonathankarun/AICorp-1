@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import { Validation } from "./Validation";
 import { GuidedDemo } from "./GuidedDemo";
 import { ProcessGuide } from "./ProcessGuide";
 import { DataDemo } from "./DataDemo";
@@ -54,6 +55,7 @@ const guidance: Record<string, string> = {
     "Select only ready sources you are allowed to use.",
 };
 function App() {
+  const [activeTab, setActiveTab] = useState<"demo" | "validation">("demo");
   const [token, setToken] = useState(sessionStorage.getItem("demoToken") || "");
   const [connected, setConnected] = useState(false);
   const [form, setForm] = useState<Assignment>(initial);
@@ -242,6 +244,19 @@ function App() {
       )}
       {connected && (
         <>
+          <nav className="workspace-tabs" role="tablist" aria-label="Subsystem views">
+            {(["demo", "validation"] as const).map(tab => <button key={tab} type="button" role="tab"
+              id={`${tab}-tab`} aria-controls={`${tab}-panel`} aria-selected={activeTab === tab}
+              tabIndex={activeTab === tab ? 0 : -1} onClick={() => setActiveTab(tab)}
+              onKeyDown={event => {
+                if (["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+                  event.preventDefault();
+                  const next = event.key === "Home" ? "demo" : event.key === "End" ? "validation" : tab === "demo" ? "validation" : "demo";
+                  setActiveTab(next); document.getElementById(`${next}-tab`)?.focus();
+                }
+              }}>{tab === "demo" ? "Demo" : "Validation"}</button>)}
+          </nav>
+          <div role="tabpanel" id="demo-panel" aria-labelledby="demo-tab" hidden={activeTab !== "demo"}>
           <GuidedDemo api={api} />
           <ProcessGuide ready={docs.length} selected={form.selected_document_version_ids.length} saved={!!form.assignment_id} results={chunks.length} searched={searched} />
         <div className="layout">
@@ -424,6 +439,10 @@ function App() {
           </aside>
         </div>
           <DataDemo api={api} />
+          </div>
+          <div role="tabpanel" id="validation-panel" aria-labelledby="validation-tab" hidden={activeTab !== "validation"}>
+            <Validation api={api} />
+          </div>
         </>
       )}
     </main>

@@ -2,6 +2,7 @@
 // it makes sure saved inputs survive reloads and errors stay visible
 import { test, expect } from "@playwright/test";
 import path from "node:path";
+import { readFile } from "node:fs/promises";
 const token = process.env.AICORP_DEMO_TOKEN!;
 test("real upload, saved selection, reload, source search, and failure preserves form", async ({
   page,
@@ -138,4 +139,54 @@ test('guided demo runs without uploads, supports stepping and replay, and shows 
   await page.getByRole('button', { name: 'Run demo again' }).click();
   await expect(demo.getByRole('alert')).toContainText('Database unavailable');
   await expect(page.getByRole('button', { name: 'Run demo', exact: true })).toBeEnabled();
+});
+
+
+test('validation tab runs real checks, preserves results across tabs, and downloads its report', async ({ page }) => {
+  await page.goto('/');
+  await page.getByLabel('Local demo token').fill(token);
+  await page.getByRole('button', { name: 'Connect', exact: true }).click();
+  await page.getByRole('tab', { name: 'Validation', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Data subsystem demo', exact: true })).toBeHidden();
+  await page.getByRole('button', { name: 'Run validation', exact: true }).click();
+  const panel = page.getByRole('tabpanel', { name: 'Validation', exact: true });
+  await expect(panel.getByRole('status')).toHaveText('PASS — 15/15 checks passed');
+  await expect(panel).toContainText('403 review_permission_required');
+  await expect(panel).toContainText('Original PDF integrity (SHA-256)');
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('link', { name: 'Download report' }).click();
+  const download = await downloadPromise;
+  const report = JSON.parse(await readFile((await download.path())!, 'utf8'));
+  expect(report.status).toBe('PASS');
+  expect(report.checks).toHaveLength(15);
+  expect(download.suggestedFilename()).toContain(report.run_id);
+  await page.getByRole('tab', { name: 'Validation', exact: true }).focus();
+  await page.keyboard.press('ArrowLeft');
+  await expect(page.getByRole('tab', { name: 'Demo', exact: true })).toBeFocused();
+  await expect(page.getByRole('heading', { name: 'Data subsystem demo', exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: 'Validation', exact: true }).click();
+  await expect(panel.getByRole('status')).toHaveText('PASS — 15/15 checks passed');
+  await page.screenshot({ path: '../../evidence/local/validation.png', fullPage: true });
+  await page.route('**/api/v1/demo/validate', route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: { code: 'database_unavailable' } }) }));
+  await page.getByRole('button', { name: 'Run validation', exact: true }).click();
+  await expect(panel.getByRole('alert')).toContainText('Database unavailable');
+  await expect(panel.getByRole('status')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Download report' })).toHaveCount(0);
+});
+
+test('validation tab displays a failed check without claiming success', async ({ page }) => {
+  await page.goto('/');
+  await page.getByLabel('Local demo token').fill(token);
+  await page.getByRole('button', { name: 'Connect', exact: true }).click();
+  await page.getByRole('tab', { name: 'Validation', exact: true }).click();
+  await page.route('**/api/v1/demo/validate', route => route.fulfill({ json: {
+    run_id: 'browser-failure-display-test', status: 'FAIL', passed: 0, total: 1,
+    completed_at: '2026-11-03T12:00:00Z', duration_ms: 10, scope: 'Failure-display test',
+    checks: [{ name: 'Initial spending', status: 'FAIL', expected: '280.00', actual: '999.00' }],
+  } }));
+  await page.getByRole('button', { name: 'Run validation', exact: true }).click();
+  const panel = page.getByRole('tabpanel', { name: 'Validation', exact: true });
+  await expect(panel.getByRole('status')).toHaveText('FAIL — 0/1 checks passed');
+  await expect(panel).toContainText('999.00');
+  await expect(panel).toContainText('280.00');
 });

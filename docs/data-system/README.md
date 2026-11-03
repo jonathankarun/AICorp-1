@@ -60,6 +60,14 @@ Assignments can still be saved and restored. The UI demonstrates three main
 capabilities; report storage/reviews and administrative access changes are exposed
 through the API and acceptance checks rather than extra screens.
 
+## Validation in the browser
+
+Select **Validation** beside **Demo**, then click **Run validation**. The tab runs
+15 real checks and displays PASS/FAIL, expected and actual results, completion
+time, and a downloadable JSON report. It also checks broken-PDF rejection,
+unauthorized correction denial, repeatability, and unchanged saved records.
+These are focused fixture checks; use the commands below for the full suite.
+
 ## Verify everything
 
 ```bash

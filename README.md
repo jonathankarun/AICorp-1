@@ -31,6 +31,10 @@ No file uploads or form filling are needed. Each run uses a rollback-only databa
 transaction: temporary records are discarded, and saved workspace data is unchanged.
 See [demo operation and scope](docs/data-system/demo-script.md).
 
+For an on-screen check, select the **Validation** tab and click **Run validation**.
+It displays expected versus actual results for 15 checks and offers a JSON report.
+The checks use temporary records and preserve saved workspace data.
+
 To verify the release:
 
 ```bash

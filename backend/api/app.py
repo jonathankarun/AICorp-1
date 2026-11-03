@@ -206,6 +206,15 @@ def create_app(
         with connection_factory() as conn:
             return run_guided_demo(conn, ctx)
 
+    @app.post("/api/v1/demo/validate")
+    def validation(ctx=Depends(identity)):
+        from backend.data.demo_validation import validate_demo
+        with connection_factory() as conn:
+            with conn.transaction():
+                # Compare one consistent snapshot even if another local user writes.
+                conn.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ")
+                return validate_demo(conn, ctx)
+
     @app.get("/api/v1/demo/spending")
     def money(ctx=Depends(identity)):
         with connection_factory() as conn:

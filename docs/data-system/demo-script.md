@@ -160,3 +160,33 @@ Closing: “The subsystem provides usable evidence, source traceability, accurat
 spending calculations, and accountable corrections. These are inputs the engine
 can build on. This walkthrough does not call an AI model, generate a report, or
 claim that the full team's production application is complete.”
+
+## Validation tab
+
+After connecting, select **Validation** and click **Run validation**. The backend
+runs the real guided workflow twice and additional failure probes. The page shows
+15 checks with their expected and actual results, a completion time, elapsed time,
+and an overall PASS/FAIL. **Download report** saves the same results as JSON.
+Switching tabs preserves the current report. A new run clears the previous result.
+
+Checks cover extracted text, assignment write/read-back and its pinned source,
+retrieval and page references, SHA-256 equality of the original and retrieved PDF,
+five imported payments, initial and corrected financial totals, audit fields,
+repeatability, rejection of a malformed PDF, and denial of a correction requested
+by an actor without reviewer permission. Record fingerprints compare complete row
+contents in 12 affected tables before and after temporary operations, not only row
+counts. Separate checks confirm denial does not change records.
+
+Say: “The demo shows the workflow. This tab checks actual results against known
+expectations, including operations that should be rejected. Every PASS corresponds
+to a comparison made during this run.”
+
+The validation endpoint is `POST /api/v1/demo/validate`; it requires the local token,
+department access, and reviewer or administrator permission. It uses a consistent
+database snapshot and rollback-only transactions. Fixture writes are discarded;
+sequence counters can advance. It tests read-back inside a transaction, not durable
+persistence after restart, and is a focused local check rather than the full test
+suite. The broader acceptance suite remains available through `validate_data.py`.
+Failures appear as FAIL; execution problems as ERROR; dependent checks without
+results as SKIP. Any of these prevents an overall PASS. An unavailable service
+shows an error and does not offer the old report as a new result.
