@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import { GuidedDemo } from "./GuidedDemo";
 import { ProcessGuide } from "./ProcessGuide";
 import { DataDemo } from "./DataDemo";
 import { SourcePreview } from "./SourcePreview";
@@ -241,6 +242,7 @@ function App() {
       )}
       {connected && (
         <>
+          <GuidedDemo api={api} />
           <ProcessGuide ready={docs.length} selected={form.selected_document_version_ids.length} saved={!!form.assignment_id} results={chunks.length} searched={searched} />
         <div className="layout">
           <section id="assignment">

@@ -199,3 +199,15 @@ aside form {
 [id] { scroll-margin-top: 20px; }
 @media (max-width: 1000px) { .process-steps { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .process-steps { grid-template-columns: 1fr; } }
+
+.guided-demo { margin: 8px 0 32px; padding: 24px; border: 2px solid #28583f; border-radius: 8px; background: #fff; }
+.demo-controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.demo-stage-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.demo-stage-tabs button { background: #eaf0e9; color: #28583f; }
+.demo-stage-tabs button[aria-current] { background: #28583f; color: white; }
+.demo-result { padding: 20px; background: #f5f5f0; margin-bottom: 20px; line-height: 1.6; }
+.demo-result h3 { font-size: 22px; margin-top: 0; }
+.demo-result blockquote { margin: 16px 0; border-left: 3px solid #769782; padding: 8px 16px; background: white; }
+.demo-result iframe { display: block; width: 100%; height: 480px; margin-top: 16px; border: 1px solid #acb9af; }
+.demo-id { overflow-wrap: anywhere; }
+.demo-money { display: flex; flex-wrap: wrap; gap: 8px 24px; }

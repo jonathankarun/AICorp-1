@@ -101,3 +101,36 @@ test('data demo shows spending, audited correction, and comparable work', async 
   await page.getByRole('button', { name: 'Load spending' }).click();
   await expect(page.getByText('Consulting: $330.00', { exact: true })).toBeVisible();
 });
+
+test('guided demo runs without uploads, supports stepping and replay, and shows failures', async ({ page }) => {
+  await page.goto('/');
+  await page.getByLabel('Local demo token').fill(token);
+  await page.getByRole('button', { name: 'Connect', exact: true }).click();
+  await expect(page.getByText('Presenter notes:', { exact: false })).toHaveCount(0);
+  await page.getByLabel('Advance automatically every 6 seconds').uncheck();
+  await page.getByRole('button', { name: 'Run demo', exact: true }).click();
+  const demo = page.locator('.guided-demo');
+  await expect(demo).toContainText('Processing status: ready');
+  await expect(demo).toContainText('six weeks');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(demo).toContainText('Improve permit intake');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(demo).toContainText('Query: timeline');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(page.getByTitle('Guided demo original PDF')).toBeVisible();
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(demo).toContainText('Consulting: $280.00');
+  await page.getByRole('button', { name: 'Next', exact: true }).click();
+  await expect(demo).toContainText('Consulting: $280.00 → $330.00');
+  await expect(demo).toContainText('not a human review');
+  await page.getByRole('button', { name: 'Run demo again' }).click();
+  await expect(demo).toContainText('Processing status: ready');
+  await page.getByLabel('Advance automatically every 6 seconds').check();
+  await expect(demo).toContainText('Assignment ID:', { timeout: 10000 });
+  await page.getByLabel('Advance automatically every 6 seconds').uncheck();
+  await page.screenshot({ path: '../../evidence/local/guided-demo.png', fullPage: true });
+  await page.route('**/api/v1/demo/run', route => route.fulfill({ status: 503, contentType: 'application/json', body: JSON.stringify({ error: { code: 'database_unavailable' } }) }));
+  await page.getByRole('button', { name: 'Run demo again' }).click();
+  await expect(demo.getByRole('alert')).toContainText('Database unavailable');
+  await expect(page.getByRole('button', { name: 'Run demo', exact: true })).toBeEnabled();
+});

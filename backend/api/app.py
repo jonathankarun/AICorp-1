@@ -200,6 +200,12 @@ def create_app(
         with connection_factory() as conn:
             return restrict_document(conn, identifier, data, ctx)
 
+    @app.post("/api/v1/demo/run")
+    def guided_demo(ctx=Depends(identity)):
+        from backend.data.guided_demo import run_guided_demo
+        with connection_factory() as conn:
+            return run_guided_demo(conn, ctx)
+
     @app.get("/api/v1/demo/spending")
     def money(ctx=Depends(identity)):
         with connection_factory() as conn:

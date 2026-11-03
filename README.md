@@ -23,11 +23,13 @@ terminal running. On macOS, open Chrome directly from a second terminal:
 open -a "Google Chrome" http://localhost:8000
 ```
 
-The capstone walkthrough at the top explains the main process: **ingest a PDF →
-store an assignment and source versions → retrieve passages → verify the original
-PDF**. Its counters reflect real workspace state. Expand the presenter notes for
-a three-minute script, then show spending corrections and comparable past work.
-See [the presentation script](docs/data-system/demo-script.md) for the full sequence.
+Click **Run demo** at the top of the connected workspace. It runs a bundled PDF
+and CSV through the real backend, then automatically displays six result stages:
+ingest → store → search → original PDF → spending → audited correction. Uncheck
+**Advance automatically every 6 seconds** to use **Next** and **Previous** instead.
+No file uploads or form filling are needed. Each run uses a rollback-only database
+transaction: temporary records are discarded, and saved workspace data is unchanged.
+See [demo operation and scope](docs/data-system/demo-script.md).
 
 To verify the release:
 

@@ -1,57 +1,60 @@
-# Jonathan's capstone presentation
+# Automatic capstone demo
 
-Start Docker Desktop, then run the README setup and launch commands from the
-repository root. Open http://localhost:8000 in Chrome, paste the terminal's token,
-and connect. All examples are fictional; this demo needs no model key.
+Start the local server as described in the README, open http://localhost:8000,
+and connect with the local token. Click **Run demo**. No uploads, typing, or
+manual reviews are needed.
 
-## Main process (about three minutes)
+The backend performs the real operations first, then the browser presents their
+captured results in six stages, automatically advancing every six seconds:
 
-1. **Explain the boundary.** “My data subsystem turns documents and payment records
-   into durable, traceable evidence that the consulting engine can use.” Point at
-   the four process cards; counts come from the connected workspace.
-2. **Ingest.** Upload `tests/fixtures/week2/engagement.pdf`. Explain that the backend
-   validates the PDF, stores the original bytes and version, extracts each page,
-   splits text into chunks, and indexes them. Wait for `ready`; failed uploads
-   display their reason and do not become selectable evidence.
-3. **Store.** Enter “Improve permit intake” and “A preliminary improvement plan”,
-   select the uploaded ready source, and save the assignment. The selection pins
-   a document version so later uploads do not silently replace its evidence.
-4. **Retrieve.** Search `timeline`. The result contains “six weeks” and a page 1
-   reference. This is permission-filtered keyword search over stored chunks.
-5. **Verify.** Click **Open original PDF** and compare the passage to page 1.
-   Reload and reconnect: the assignment and selected source persist. Explain that
-   retrieved text and source references can now be handed to the consulting engine.
+1. **Ingest the PDF:** validates the bundled fictional PDF, stores its bytes,
+   extracts pages, and creates searchable chunks. Shows actual extracted text.
+2. **Store and read the assignment:** writes an example assignment, pins the PDF
+   version, and reads it back from PostgreSQL in the same transaction.
+3. **Retrieve evidence:** searches `timeline` in that source version with the
+   existing access checks, returning the passage about six weeks and its page.
+4. **Display the original source:** shows the stored PDF for comparison. This
+   display does not claim that a human verified or approved the evidence.
+5. **Calculate spending:** imports the five bundled CSV payments under a unique
+   run key and calculates $280 consulting, $500 operational, $50 unresolved,
+   and 2.80% of the matching $10,000 October budget, including the -$20 refund.
+6. **Record a sample correction:** a clearly labeled scripted decision classifies
+   the sample $50 as consulting, yielding $330 and 3.30%, with an actual audit entry.
 
-## Payment branch (about one minute)
+Uncheck **Advance automatically every 6 seconds** before or during playback to
+control the pace with **Next** and **Previous**. Clicking a stage pauses playback.
+**Run demo again** executes a fresh run, always starting from the same fixture.
+If an error appears, fix the connection and retry; no partial demo records persist.
 
-- Load spending. The launcher imported the bundled CSV; the browser reads totals
-  from the backend. A fresh example is $280 consulting (including a -$20 refund),
-  $500 operational, $50 unresolved, and 2.80% of a $10,000 October budget.
-- Enter a correction reason and classify the unresolved payment as consulting.
-  Show $330, 3.30%, and the saved old/new categories, actor, time, and reason.
-- Reload and reconnect, then load spending again to demonstrate persistence.
-  If the demo already starts at $330, show the existing audit record: restarting
-  intentionally preserves the review. Do not reset your database for a presentation.
-- Find past work for `process`. Explain the evidence-linked facts and unknown
-  outcome. These engagement totals use a different population from October spending.
+## Isolation and limits
 
-## What “done” means here
+`POST /api/v1/demo/run` requires the local token, department access, and a reviewer
+or administrator role. It uses the existing ingestion, assignment, retrieval,
+import, spending, and correction services inside a rollback-only transaction.
+Unique document IDs and import keys avoid touching existing user records. Even
+on failure, temporary records roll back. Audit sequence numbers may advance,
+but no demo audit rows remain. No AI model is called.
 
-The local data subsystem implements ingestion, storage, retrieval, comparable work,
-spending, corrections, report versions/reviews, access checks, and verified recovery.
-The browser demonstrates the main document and payment processes. Report APIs,
-permissions, and recovery also have automated acceptance coverage. Production
-identity, real City data, live AI generation, and whole-team integration remain
-outside this local subsystem demo.
+The UI displays captured results after execution, not a live progress stream.
+The demo proves database writes/read-back inside a transaction; it does not claim
+those temporary records survive a reload. Use the manual workspace below to
+show permanent assignments, uploads, and corrections. Report storage/reviews,
+recovery, and production integration are outside the automatic walkthrough.
 
-## Verification — November 3, 2026
+## Bundled files for optional manual exploration
 
-- Full existing backend acceptance suite: 87 passed.
-- TypeScript check and production Vite build: passed.
-- Real Chromium workflow suite: 3 passed, including process progress, upload,
-  reload persistence, retrieval, PDF preview, corrections, and outage handling.
-- Latest team engine acceptance tests after synchronizing main: 8 passed.
-- Rendered full-page browser screenshot reviewed for walkthrough layout.
+- `tests/fixtures/week2/engagement.pdf`: upload in the manual workspace, select the
+  ready source, save an assignment, and search `timeline`.
+- `tests/fixtures/week2/payments.csv`: imported automatically by the guided run.
+- `tests/fixtures/week2/manifest.json` and `budget.json`: source metadata and the
+  matching spending budget; the backend reads these automatically.
 
-Reproduce with `.venv/bin/python scripts/validate_data.py --disposable --browser`.
-Local logs and screenshots are under `evidence/local/` and are not committed.
+All records are fictional. No custom PDF or CSV is needed for the automatic demo.
+
+## Verification
+
+Run `.venv/bin/python scripts/validate_data.py --disposable --browser`.
+Backend coverage checks repeatability, access rejection, and preservation of a
+previously corrected payment and all affected table counts. Browser coverage
+checks manual stepping, automatic advance, replay, source display, and API failure.
+Local logs and screenshots are saved under `evidence/local/`.
