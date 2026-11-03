@@ -128,7 +128,7 @@ test('guided demo runs without uploads, supports stepping and replay, and shows 
   await page.clock.fastForward(30000);
   await expect(demo.getByRole('heading', { name: '1. Ingest the PDF', exact: true })).toBeVisible();
   await expect(demo).toContainText('What happens:');
-  await expect(demo).toContainText('Why it matters:');
+  await expect(demo).toContainText('Tools & methods:');
   await page.getByRole('button', { name: 'Next', exact: true }).click();
   await expect(demo).toContainText('Assignment ID:');
   await page.getByRole('button', { name: 'Previous', exact: true }).click();

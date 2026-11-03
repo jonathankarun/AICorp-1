@@ -2,8 +2,8 @@
    the smaller-screen rules keep the forms usable on narrow screens */
 :root {
   font-family: system-ui, sans-serif;
-  color: #24322d;
-  background: #f5f5f0;
+  color: #111;
+  background: #fff;
   font-synthesis: none;
 }
 * {
@@ -13,12 +13,12 @@ body {
   margin: 0;
 }
 main {
-  max-width: 1180px;
+  max-width: 1080px;
   margin: auto;
   padding: 38px 30px;
 }
 header {
-  border-bottom: 1px solid #cbd2cc;
+  border-bottom: 1px solid #ddd;
   padding-bottom: 28px;
 }
 h1 {
@@ -36,11 +36,11 @@ h3 {
 .eyebrow {
   font-size: 12px;
   letter-spacing: 2px;
-  color: #4e6b5d;
+  color: #555;
 }
 small,
 .muted {
-  color: #596b61;
+  color: #555;
   font-size: 13px;
 }
 small {
@@ -80,8 +80,8 @@ textarea {
   width: 100%;
   margin-top: 7px;
   font: inherit;
-  border: 1px solid #acb9af;
-  border-radius: 4px;
+  border: 1px solid #bbb;
+  border-radius: 2px;
   padding: 11px;
   background: white;
   color: inherit;
@@ -91,11 +91,11 @@ textarea {
   resize: vertical;
 }
 button {
-  background: #28583f;
+  background: #111;
   color: white;
   border: 0;
   padding: 12px 18px;
-  border-radius: 4px;
+  border-radius: 2px;
   font: inherit;
   font-size: 14px;
   cursor: pointer;
@@ -103,16 +103,18 @@ button {
 }
 button:disabled {
   opacity: 0.55;
-  cursor: wait;
+  cursor: not-allowed;
 }
-input:focus,
-textarea:focus,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible,
+textarea:focus-visible,
 button:focus-visible {
-  outline: 3px solid #92bba1;
+  outline: 3px solid #555;
   outline-offset: 2px;
 }
 fieldset {
-  border: 1px solid #cbd2cc;
+  border: 1px solid #ddd;
   padding: 16px;
   margin: 20px 0;
 }
@@ -135,7 +137,7 @@ legend {
   margin-bottom: 32px;
 }
 .jobs li {
-  border-bottom: 1px solid #cbd2cc;
+  border-bottom: 1px solid #ddd;
   padding: 14px 0;
 }
 .state {
@@ -146,7 +148,7 @@ legend {
 }
 article {
   background: white;
-  border-left: 3px solid #769782;
+  border-left: 3px solid #bbb;
   padding: 12px 16px;
   margin: 16px 0;
 }
@@ -160,12 +162,12 @@ article p {
   border: 1px solid;
 }
 .error {
-  color: #892d27;
-  background: #fff2ef;
+  color: #111;
+  background: #f5f5f5;
 }
 .notice {
-  background: #edf5ec;
-  color: #28583f;
+  background: #f5f5f5;
+  color: #111;
 }
 aside form {
   margin-bottom: 20px;
@@ -186,13 +188,13 @@ aside form {
 }
 
 /* just enough spacing to keep the demo separate from the upload form */
-.data-demo { border: 1px solid #cbd2cc; padding: 24px; margin-bottom: 32px; }
+.data-demo { border: 1px solid #ddd; padding: 24px; margin-bottom: 32px; }
 
-.process-guide { margin: 8px 0 32px; padding: 24px; background: #eaf0e9; border: 1px solid #acb9af; border-radius: 8px; }
+.process-guide { margin: 8px 0 32px; padding: 24px; background: #f5f5f5; border: 1px solid #bbb; border-radius: 0; }
 .process-guide > p { max-width: 850px; line-height: 1.6; }
 .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0; list-style: none; }
-.process-steps li { padding: 16px; background: white; border-top: 3px solid #28583f; border-radius: 4px; }
-.process-steps a { color: #28583f; font-weight: 700; }
+.process-steps li { padding: 16px; background: white; border-top: 3px solid #111; border-radius: 2px; }
+.process-steps a { color: #111; font-weight: 700; }
 .process-steps p, .process-guide details { font-size: 14px; line-height: 1.6; }
 .process-steps strong { font-size: 13px; }
 .process-guide summary { cursor: pointer; font-weight: 600; }
@@ -200,14 +202,26 @@ aside form {
 @media (max-width: 1000px) { .process-steps { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .process-steps { grid-template-columns: 1fr; } }
 
-.guided-demo { margin: 8px 0 32px; padding: 24px; border: 2px solid #28583f; border-radius: 8px; background: #fff; }
+.guided-demo { margin: 8px 0 32px; padding: 24px; border: 1px solid #ddd; border-radius: 0; background: #fff; }
 .demo-controls { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 .demo-stage-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
-.demo-stage-tabs button { background: #eaf0e9; color: #28583f; }
-.demo-stage-tabs button[aria-current] { background: #28583f; color: white; }
-.demo-result { padding: 20px; background: #f5f5f0; margin-bottom: 20px; line-height: 1.6; }
+.demo-stage-tabs button { background: #f5f5f5; color: #111; }
+.demo-stage-tabs button[aria-current] { background: #111; color: white; }
+.demo-result { padding: 20px; background: #fff; margin-bottom: 20px; line-height: 1.6; }
 .demo-result h3 { font-size: 22px; margin-top: 0; }
-.demo-result blockquote { margin: 16px 0; border-left: 3px solid #769782; padding: 8px 16px; background: white; }
-.demo-result iframe { display: block; width: 100%; height: 480px; margin-top: 16px; border: 1px solid #acb9af; }
+.demo-result blockquote { margin: 16px 0; border-left: 3px solid #bbb; padding: 8px 16px; background: white; }
+.demo-result iframe { display: block; width: 100%; height: 480px; margin-top: 16px; border: 1px solid #bbb; }
 .demo-id { overflow-wrap: anywhere; }
 .demo-money { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+/* A restrained monochrome palette keeps the results in focus. */
+a { color: inherit; text-underline-offset: 3px; }
+input[type="checkbox"] { accent-color: #111; }
+.demo-stage-tabs { gap: 0; border-bottom: 1px solid #ddd; margin-bottom: 24px; }
+.demo-stage-tabs button { background: white; border-radius: 0; border-bottom: 2px solid transparent; margin: 0; padding: 12px; }
+.demo-stage-tabs button[aria-current] { background: white; color: #111; border-bottom-color: #111; font-weight: 700; }
+.demo-result { padding: 0; }
+.demo-result > p { max-width: 850px; }
+.demo-result blockquote { border-left-width: 2px; background: #f5f5f5; }
+.demo-controls p { font-size: 13px; color: #555; margin-top: 0; }
+.guided-demo .eyebrow { display: none; }

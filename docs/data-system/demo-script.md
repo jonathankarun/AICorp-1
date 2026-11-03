@@ -23,7 +23,7 @@ captured results in six stages. Steps remain visible until you choose another:
 
 Control the pace with **Next** and **Previous**, or click any stage directly.
 There is no timer or autoplay setting. Each stage includes “What happens” and
-“Why it matters” explanations.
+“Tools & methods” summaries. Detailed speaking guidance remains below.
 **Run demo again** executes a fresh run, always starting from the same fixture.
 If an error appears, fix the connection and retry; no partial demo records persist.
 
