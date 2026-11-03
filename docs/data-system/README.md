@@ -24,6 +24,12 @@ Stop the server with Ctrl+C. PostgreSQL keeps its data in the Docker volume.
 
 ## The simple demo
 
+Start with the four process cards at the top of the workspace: ingest a PDF,
+store its assignment, retrieve a passage, and verify the original source. Expand
+the presenter notes or follow [the presentation script](demo-script.md). The
+cards show ready versions, selected versions, saved assignment state, and the
+last search result count. Then demonstrate the payment branch below.
+
 1. Click **Load spending**. A fresh example shows $280 consulting, $500 operational,
    $50 unresolved, and 2.80% of a matching $10,000 October budget. The $280 includes
    the -$20 refund. These are exact decimal amounts, not rounded floating-point sums.

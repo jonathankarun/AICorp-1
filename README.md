@@ -16,7 +16,20 @@ npm run build --prefix apps/web
 .venv/bin/python scripts/serve_week2.py
 ```
 
-Open http://127.0.0.1:8000 and paste the printed token. To verify the release:
+Open http://localhost:8000 in Chrome and paste the printed token. Keep the server
+terminal running. On macOS, open Chrome directly from a second terminal:
+
+```bash
+open -a "Google Chrome" http://localhost:8000
+```
+
+The capstone walkthrough at the top explains the main process: **ingest a PDF →
+store an assignment and source versions → retrieve passages → verify the original
+PDF**. Its counters reflect real workspace state. Expand the presenter notes for
+a three-minute script, then show spending corrections and comparable past work.
+See [the presentation script](docs/data-system/demo-script.md) for the full sequence.
+
+To verify the release:
 
 ```bash
 .venv/bin/python scripts/validate_data.py --disposable --browser

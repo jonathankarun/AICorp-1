@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import { ProcessGuide } from "./ProcessGuide";
 import { DataDemo } from "./DataDemo";
 import { SourcePreview } from "./SourcePreview";
 
@@ -240,10 +241,10 @@ function App() {
       )}
       {connected && (
         <>
-          <DataDemo api={api} />
+          <ProcessGuide ready={docs.length} selected={form.selected_document_version_ids.length} saved={!!form.assignment_id} results={chunks.length} searched={searched} />
         <div className="layout">
-          <section>
-            <h2>1. Assignment</h2>
+          <section id="assignment">
+            <h2>2. Store the assignment</h2>
             <form onSubmit={save}>
               <label>
                 Problem
@@ -339,7 +340,7 @@ function App() {
             </form>
           </section>
           <aside>
-            <h2>2. Document input</h2>
+            <h2 id="document-input">1. Ingest a source</h2>
             <form onSubmit={upload}>
               <label>Document version
                 <select value={updateDocument} onChange={e => setUpdateDocument(e.target.value)}>
@@ -387,7 +388,7 @@ function App() {
                 ))}
               </ul>
             )}
-            <h2>3. Find evidence</h2>
+            <h2 id="evidence">3. Retrieve and verify evidence</h2>
             <form onSubmit={find}>
               <label>
                 Search query
@@ -420,6 +421,7 @@ function App() {
             ))}
           </aside>
         </div>
+          <DataDemo api={api} />
         </>
       )}
     </main>

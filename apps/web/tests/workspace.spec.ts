@@ -9,6 +9,8 @@ test("real upload, saved selection, reload, source search, and failure preserves
   await page.goto("/");
   await page.getByLabel("Local demo token").fill(token);
   await page.getByRole("button", { name: "Connect", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "From source documents to traceable evidence" })).toBeVisible();
+  await expect(page.locator(".process-steps")).toContainText("Save an assignment to continue");
   await page
     .getByLabel("Problem", { exact: true })
     .fill("Improve permit intake");
@@ -23,6 +25,7 @@ test("real upload, saved selection, reload, source search, and failure preserves
   await page.getByRole("checkbox").last().check();
   await page.getByRole("button", { name: "Save assignment" }).click();
   await expect(page.getByRole("status")).toContainText("Assignment saved");
+  await expect(page.locator(".process-steps")).toContainText("1 selected · Assignment saved");
   await page.reload();
   await page.getByRole("button", { name: "Connect", exact: true }).click();
   await expect(page.getByLabel("Problem", { exact: true })).toHaveValue(
@@ -33,6 +36,7 @@ test("real upload, saved selection, reload, source search, and failure preserves
   await page.getByRole("button", { name: "Search evidence" }).click();
   await expect(page.locator("article")).toContainText("six weeks");
   await expect(page.locator("article h3")).toContainText("page 1");
+  await expect(page.locator(".process-steps")).toContainText("passages from the last search");
   await page
     .getByLabel("PDF file")
     .setInputFiles({

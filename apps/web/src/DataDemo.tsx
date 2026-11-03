@@ -20,8 +20,8 @@ export function DataDemo({ api }: { api: Api }) {
     await run(async () => setCases(await api('/comparables', post({ topic: topic.trim() || null, for_external_model: false }))));
   }
   return <section className="data-demo">
-    <h2>Data subsystem demo</h2>
-    <p>Try the fictional spending example, look up past work, then upload or search source evidence below.</p>
+    <h2>Payment records → spending → audited review</h2>
+    <p>The launcher imports the fictional CSV into PostgreSQL. The API totals the October payment population, including refunds. A reviewer can resolve a classification while preserving who changed it, when, and why.</p>
     {message && <p role="alert">{message}</p>}
     <h3>Spending and correction history</h3>
     <button disabled={busy} onClick={() => run(async () => setMoney(await api('/demo/spending')))}>Load spending</button>
@@ -40,7 +40,8 @@ export function DataDemo({ api }: { api: Api }) {
       <h4>Saved corrections</h4>
       {money.audit.length === 0 ? <p>No corrections yet.</p> : <ul>{money.audit.map((a: any) => <li key={a.audit_id}>{a.old_value.classification} → {a.new_value.classification}: {a.reason} <small>{a.created_at} · actor {a.actor_id}</small></li>)}</ul>}
     </>}
-    <h3>Find comparable past work</h3>
+    <h3>Handoff: find comparable past work</h3>
+    <p>Retrieve stored project facts and their evidence pages for the consulting engine. Missing outcomes stay unknown rather than becoming invented claims.</p>
     <form onSubmit={compare}><label>Topic<input value={topic} onChange={e => setTopic(e.target.value)} /></label><button disabled={busy}>Find past work</button></form>
     {cases?.length === 0 && <p>No matching projects. Try “process”.</p>}
     {cases?.map(c => <article key={c.engagement_id}>

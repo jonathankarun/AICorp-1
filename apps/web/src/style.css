@@ -187,3 +187,15 @@ aside form {
 
 /* just enough spacing to keep the demo separate from the upload form */
 .data-demo { border: 1px solid #cbd2cc; padding: 24px; margin-bottom: 32px; }
+
+.process-guide { margin: 8px 0 32px; padding: 24px; background: #eaf0e9; border: 1px solid #acb9af; border-radius: 8px; }
+.process-guide > p { max-width: 850px; line-height: 1.6; }
+.process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0; list-style: none; }
+.process-steps li { padding: 16px; background: white; border-top: 3px solid #28583f; border-radius: 4px; }
+.process-steps a { color: #28583f; font-weight: 700; }
+.process-steps p, .process-guide details { font-size: 14px; line-height: 1.6; }
+.process-steps strong { font-size: 13px; }
+.process-guide summary { cursor: pointer; font-weight: 600; }
+[id] { scroll-margin-top: 20px; }
+@media (max-width: 1000px) { .process-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .process-steps { grid-template-columns: 1fr; } }
